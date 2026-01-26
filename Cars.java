@@ -12,7 +12,7 @@ public interface Cars {
     public double getEnginePower();
     public double getCurrentSpeed();
     public Color getColor();
-    public void setColor();
+    public void setColor(Color clr);
     public void startEngine();
     public void stopEngine();
     public double speedFactor();
