@@ -1,5 +1,6 @@
 import java.awt.*;
 
+
 abstract public class Car extends Engine implements Movable{
     private final int nrDoors; // Number of doors on the car
     public double currentSpeed; // The current speed of the car
@@ -8,12 +9,16 @@ abstract public class Car extends Engine implements Movable{
     public Point currentPosition; // är just nu int, kanske borde vara double
     public enum Directions {NORTH, WEST, SOUTH, EAST}
     Directions currentDirection;
+    public double enginePower;
 
-    public Car(double enginePower, int nrDoors, Color color, String modelName) {
+
+    public Car(double enginePower, int nrDoors, Color color, String modelName, Point currentPosition, Directions currentDirection) {
         super(enginePower);
         this.nrDoors = nrDoors;
         this.color = color;
         this.modelName = modelName;
+        this.currentPosition = currentPosition;
+        this.currentDirection = currentDirection;
 
         // pos och dir går här
 
@@ -108,6 +113,8 @@ abstract public class Car extends Engine implements Movable{
 
     // TODO fix this method according to lab pm
     public void gas(double amount){
+
+
         incrementSpeed(amount);
     }
     // TODO fix this method according to lab pm
