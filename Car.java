@@ -48,8 +48,16 @@ abstract public class Car extends Engine implements Movable{
     public void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
 
-    public void move() {
+    /* För att förtydliga. Switch tar ett värde (i detta fall vår riktning)
+             switch(currentDirection)
+       Därefter kollar den om värdet i "case" == värdet i switch.
+            ex) switch (currentDirection), case NORTH kollar om currentDirection == NORTH
+       I så fall utför den den följande instruktionen.
 
+       I move() adderar eller subtraherar den vår hastighet (currentSpeed)
+       till x- eller -y koordinaten beroende på dess riktning.
+    */
+    public void move() {
         switch (currentDirection) {
             case NORTH:
                 currentPosition.y += currentSpeed;
