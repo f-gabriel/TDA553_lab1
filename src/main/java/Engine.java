@@ -1,3 +1,5 @@
+import java.awt.*;
+
 abstract public class Engine {
     public double enginePower; // Engine power of the engine
 
