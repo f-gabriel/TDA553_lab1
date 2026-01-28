@@ -2,6 +2,7 @@ public class CarTest {
 
     @org.junit.jupiter.api.Test
     void move() {
+
     }
 
     @org.junit.jupiter.api.Test
