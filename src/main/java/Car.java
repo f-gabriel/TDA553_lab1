@@ -94,11 +94,16 @@ abstract public class Car extends Engine implements Movable{
 
     // TODO fix this method according to lab pm
     public void gas(double amount){
-        incrementSpeed(amount);
+        if(amount == 1 || amount == 0){
+            incrementSpeed(amount);
+        } else System.out.println("amount != (0 or 1)");
     }
     // TODO fix this method according to lab pm
     public void brake(double amount){
-        decrementSpeed(amount);
+        if( amount == 1 || amount == 0){
+            decrementSpeed(amount);
+        } else System.out.println("amount != (0 or 1)");
+
     }
 }
 
