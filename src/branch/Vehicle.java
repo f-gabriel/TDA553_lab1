@@ -1,32 +1,23 @@
+package branch;
+
 import java.awt.*;
-import java.util.HashMap;
+import java.util.*;
 
-
-abstract public class Car extends Engine implements Movable{
-    //public enum Directions {NORTH, WEST, SOUTH, EAST}
-
-    private final int nrDoors; // Number of doors on the car
+abstract public class Vehicle extends Engine implements Movable {
     public double currentSpeed; // The current speed of the car
-    public Color color; // Color of the car
-    public String modelName;
+    public Color color;
     public Orientation orientation;
 
-    public Car(double enginePower, int nrDoors, Color color, String modelName, double x, double y, String direction) {
+    public Vehicle(double enginePower, Color color, double x, double y, String direction){
         super(enginePower);
-        this.nrDoors = nrDoors;
         this.color = color;
-        this.modelName = modelName;
         this.orientation = new Orientation(x, y, direction);
         stopEngine();
     }
 
-    public int getNrDoors(){
-        return nrDoors;
-    }
     public double getCurrentSpeed(){
         return currentSpeed;
     }
-    public String getModelName(){return modelName;}
     public Color getColor(){
         return color;
     }
@@ -36,12 +27,10 @@ abstract public class Car extends Engine implements Movable{
 
     public void startEngine(){currentSpeed = 0.1;}
     public void stopEngine(){currentSpeed = 0;}
-    public double speedFactor(){
-        return 0;
-    }
+
+    public double speedFactor(){return 0;}
     public void incrementSpeed(double amount){currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);}
-    public void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
+    public void decrementSpeed(double amount){currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
 
     public void move() {
         switch (orientation.currentDirection) {
@@ -91,19 +80,4 @@ abstract public class Car extends Engine implements Movable{
                 break;
         }
     };
-
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
-    }
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
-    }
 }
-
-
-
-
-
-
