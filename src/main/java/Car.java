@@ -1,15 +1,11 @@
 import java.awt.*;
 
-
-
 abstract public class Car extends Engine implements Movable{
-    //public enum Directions {NORTH, WEST, SOUTH, EAST}
-
-    private final int nrDoors; // Number of doors on the car
-    public double currentSpeed; // The current speed of the car
-    public Color color; // Color of the car
-    public String modelName;
-    public Orientation orientation;
+    int nrDoors; // Number of doors on the car
+    double currentSpeed; // The current speed of the car
+    Color color; // Color of the car
+    String modelName;
+    Orientation orientation;
 
     public Car(double enginePower, int nrDoors, Color color, String modelName, double x, double y, String direction) {
         super(enginePower);
@@ -20,29 +16,38 @@ abstract public class Car extends Engine implements Movable{
         stopEngine();
     }
 
-    public int getNrDoors(){
-        return nrDoors;
-    }
-    public double getCurrentSpeed(){
-        return currentSpeed;
-    }
-    public String getModelName(){return modelName;}
-    public Color getColor(){
-        return color;
-    }
-    public void setColor(Color clr) {
-        color = clr;
-    }
+    // get-/set-funktioner som rör hastighet och positionering
+    public double getCurrentSpeed(){return currentSpeed;}
+    public double getX(){return orientation.getX();}
+    public double getY(){return orientation.getY();}
+    public Orientation.Directions getCurrentDirection(){return orientation.currentDirection;}
 
+    // övriga get-/set-funktioner
+    public int getNrDoors(){return nrDoors;}
+    public String getModelName(){return modelName;}
+    public Color getColor(){return color;}
+    public void setColor(Color clr) {color = clr;}
+
+
+
+    // funktioner som påverkar currentSpeed
     public void startEngine(){currentSpeed = 0.1;}
     public void stopEngine(){currentSpeed = 0;}
-    public double speedFactor(){
-        return 0;
+    double speedFactor(){return 0;}
+    void incrementSpeed(double amount){currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);}
+    void decrementSpeed(double amount){currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
+    public void gas(double amount){
+        if(amount == 1 || amount == 0){
+            incrementSpeed(amount);
+        } else System.out.println("amount != (0 or 1)");
     }
-    public void incrementSpeed(double amount){currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);}
-    public void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
+    public void brake(double amount){
+        if( amount == 1 || amount == 0){
+            decrementSpeed(amount);
+        } else System.out.println("amount != (0 or 1)");
+    }
 
+    // Funktioner som ändrar bilens riktning och position
     public void move() {
         switch (orientation.currentDirection) {
             case NORTH:
@@ -92,19 +97,7 @@ abstract public class Car extends Engine implements Movable{
         }
     };
 
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        if(amount == 1 || amount == 0){
-            incrementSpeed(amount);
-        } else System.out.println("amount != (0 or 1)");
-    }
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        if( amount == 1 || amount == 0){
-            decrementSpeed(amount);
-        } else System.out.println("amount != (0 or 1)");
 
-    }
 }
 
 

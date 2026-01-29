@@ -1,5 +1,5 @@
 abstract public class Engine {
-    public double enginePower; // Engine power of the engine
+    double enginePower; // Engine power of the engine
 
     public Engine(double enginePower){
         this.enginePower = enginePower;

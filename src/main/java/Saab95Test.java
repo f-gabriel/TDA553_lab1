@@ -7,17 +7,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class Saab95Test {
 
     Saab95 saab = new Saab95();
-
-    //sätter currentSpeed till 0 innan varje test så att vi alltid vet vad vi utgår från.
     @BeforeEach
     void setUp() {
-        saab.stopEngine();
+        saab.stopEngine(); // återställer currentSpeed
+        saab.orientation.setCurrentDirection(Orientation.Directions.NORTH); // återställer currentDirection
+        saab.orientation.setPosition(0,0); // återställer position
     }
+//    @AfterEach
+//    void tearDown() {}
 
+    @Test
+    void checkCurrentSpeedRange(){
+        saab.decrementSpeed(10); // värde spelar ingen roll, bara det inte är negativt
+        assertEquals(0, saab.getCurrentSpeed());
 
-    @AfterEach
-    void tearDown() {
-
+        saab.incrementSpeed(200); // amount > 100
+        assertEquals(saab.enginePower, saab.getCurrentSpeed());
     }
 
     @Test
@@ -26,7 +31,7 @@ class Saab95Test {
     }
 
     @Test
-    void gas1() {
+    void checkGasZero() {
         saab.startEngine();
         double oldSpeed = saab.getCurrentSpeed();
         saab.gas(0);
@@ -34,7 +39,7 @@ class Saab95Test {
         System.out.println(saab.getCurrentSpeed());
     }
     @Test
-    void gas2(){
+    void checkGasNotOneOrZero(){
         saab.startEngine();
         double oldSpeed = saab.getCurrentSpeed();
         saab.gas(95);
@@ -43,7 +48,7 @@ class Saab95Test {
     }
 
     @Test
-    void gas3(){
+    void checkGasOne(){
         saab.startEngine();
         double oldSpeed = saab.getCurrentSpeed();
         saab.gas(1);
@@ -52,7 +57,7 @@ class Saab95Test {
     }
 
     @Test
-    void brake() {
+    void checkBrake() {
         saab.startEngine(); // currentSpeed = 0.1
 
         saab.brake(0);
@@ -64,12 +69,12 @@ class Saab95Test {
     }
 
     @Test
-    void move() {
+    void checkMove() {
         saab.startEngine();
-
-        double oldY = saab.orientation.getY();
         saab.incrementSpeed(2);
 
+        // currentDirection = NORTH => move() ska ändra y-koordinaten
+        double oldY = saab.orientation.getY();
         saab.move();
         assertNotEquals(oldY, saab.orientation.getY());
 
@@ -90,32 +95,38 @@ class Saab95Test {
     }
 
     @Test
-    void turnLeft() {
+    void CheckTurnLeft() {
         var newDirection = Orientation.Directions.WEST;
         saab.turnLeft();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
+
         newDirection = Orientation.Directions.SOUTH;
         saab.turnLeft();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
+
         newDirection = Orientation.Directions.EAST;
         saab.turnLeft();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
+
         newDirection = Orientation.Directions.NORTH;
         saab.turnLeft();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
     }
 
     @Test
-    void turnRight() {
+    void CheckTurnRight() {
         var newDirection = Orientation.Directions.EAST;
         saab.turnRight();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
+
         newDirection = Orientation.Directions.SOUTH;
         saab.turnRight();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
+
         newDirection = Orientation.Directions.WEST;
         saab.turnRight();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
+
         newDirection = Orientation.Directions.NORTH;
         saab.turnRight();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
