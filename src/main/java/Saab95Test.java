@@ -42,7 +42,7 @@ class Saab95Test {
     void checkGasNotOneOrZero(){
         saab.startEngine();
         double oldSpeed = saab.getCurrentSpeed();
-        saab.gas(95);
+        saab.gas(-1);
         assertEquals(oldSpeed, saab.getCurrentSpeed());
         System.out.println(saab.getCurrentSpeed());
     }
@@ -62,7 +62,7 @@ class Saab95Test {
 
         saab.brake(0);
         assertEquals(0.1, saab.getCurrentSpeed());
-        saab.brake(95);
+        saab.brake(-1);
         assertEquals(0.1, saab.getCurrentSpeed());
         saab.brake(1);
         assertEquals(0.0, saab.getCurrentSpeed());
