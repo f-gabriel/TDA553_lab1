@@ -26,7 +26,7 @@ abstract public class Car extends Engine implements Movable{
     public int getNrDoors(){return nrDoors;}
     public String getModelName(){return modelName;}
     public Color getColor(){return color;}
-    public void setColor(Color clr) {color = clr;}
+    private void setColor(Color clr) {color = clr;}
 
     // funktioner som påverkar currentSpeed
     public void startEngine(){currentSpeed = 0.1;}
@@ -43,8 +43,8 @@ abstract public class Car extends Engine implements Movable{
     }
 
     double speedFactor(){return 0;}
-    void incrementSpeed(double amount){currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);}
-    void decrementSpeed(double amount){currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
+    private void incrementSpeed(double amount){currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);}
+    private void decrementSpeed(double amount){currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
 
     // Funktioner som ändrar bilens riktning och position
     public void move() {
