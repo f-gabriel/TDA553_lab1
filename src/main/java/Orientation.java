@@ -38,10 +38,7 @@ public class Orientation {
     public void setX(double x){xCoordinate = x;}
     public void setY(double y){yCoordinate = y;}
 
-    public void setPosition(double x, double y){
-        setX(x);
-        setY(y);
-    }
+    public void setPosition(double x, double y){setX(x); setY(y);}
 
     //set och get funktioner för direction
     public Directions getCurrentDirection(){return currentDirection;}
