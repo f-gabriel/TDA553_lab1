@@ -1,5 +1,5 @@
 public interface TruckBed {
     void raise();
     void lower();
-    void getBedState();
+    int getBedState();
 }

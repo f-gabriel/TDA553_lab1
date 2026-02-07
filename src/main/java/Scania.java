@@ -1,5 +1,7 @@
 import java.awt.*;
 
+// Todo: behöver ny implementation av raise() och lower(), extends Truck
+
 public class Scania extends Car {
 
     public Scania() {
@@ -8,7 +10,6 @@ public class Scania extends Car {
 
 
     public void truckBed() {
-
     }
 }
 
