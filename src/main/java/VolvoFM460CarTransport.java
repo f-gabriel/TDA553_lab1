@@ -14,6 +14,13 @@ public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVe
     public VolvoFM460CarTransport(double enginePower, Color color, double x, double y, String direction){
         super (enginePower, color, "Volvo FM 460",x, y, direction);}
 
-    public void load(PersonalVehicle item) {loader.load(item);}
+    public void load(PersonalVehicle item) {
+        double maxDistAllowed = 1;
+        double distanceX = item.getX() - getX(); // hämtar x resp. y koordinater för både bil som ska lastas och
+        double distanceY = item.getY() - getY(); // lastbilen som lastar och tar skillnaden för dem.
+
+        if (Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2)) <= maxDistAllowed)
+            loader.load(item);
+    }
     public PersonalVehicle unLoad() {return loader.unLoad();}
 }
