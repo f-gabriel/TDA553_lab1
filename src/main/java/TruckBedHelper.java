@@ -1,3 +1,4 @@
+
 public class TruckBedHelper implements TruckBed{
     public int bedState;
     public TruckBedHelper(){}

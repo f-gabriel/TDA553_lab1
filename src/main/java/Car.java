@@ -42,9 +42,9 @@ abstract public class Car extends Engine implements Movable{
         } else System.out.println("amount != (0 or 1)");
     }
 
-    double speedFactor(){return 0;}
-    private void incrementSpeed(double amount){currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);}
-    private void decrementSpeed(double amount){currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
+    protected double speedFactor(){return 0;}
+    protected void incrementSpeed(double amount){currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);}
+    protected void decrementSpeed(double amount){currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
 
     // Funktioner som ändrar bilens riktning och position
     public void move() {
