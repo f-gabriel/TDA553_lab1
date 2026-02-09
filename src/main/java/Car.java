@@ -21,6 +21,8 @@ abstract public class Car extends Engine implements Movable{
     public double getX(){return orientation.getX();}
     public double getY(){return orientation.getY();}
     public Orientation.Directions getCurrentDirection(){return orientation.currentDirection;}
+    public void setPosition(double x, double y){orientation.setPosition(x,y);}
+    public void addToCoordinate(char coordinate, double amount){orientation.addToCoordinate(coordinate, amount);}
 
     // övriga get-/set-funktioner
     public int getNrDoors(){return nrDoors;}
@@ -42,7 +44,7 @@ abstract public class Car extends Engine implements Movable{
         } else System.out.println("amount != (0 or 1)");
     }
 
-    protected double speedFactor(){return 0;}
+    protected double speedFactor(){return enginePower * 0.01;}
     protected void incrementSpeed(double amount){currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);}
     protected void decrementSpeed(double amount){currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);}
 
@@ -50,16 +52,16 @@ abstract public class Car extends Engine implements Movable{
     public void move() {
         switch (orientation.currentDirection) {
             case NORTH:
-                orientation.addToCoordinate('y', currentSpeed);
+                addToCoordinate('y', currentSpeed);
                 break;
             case WEST:
-                orientation.addToCoordinate('x', -currentSpeed);
+                addToCoordinate('x', -currentSpeed);
                 break;
             case SOUTH:
-                orientation.addToCoordinate('y', -currentSpeed);
+                addToCoordinate('y', -currentSpeed);
                 break;
             case EAST: // Skulle kunna skrivas som default istället
-                orientation.addToCoordinate('x', currentSpeed);
+                addToCoordinate('x', currentSpeed);
                 break;
         }
     }

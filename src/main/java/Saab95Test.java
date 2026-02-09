@@ -2,6 +2,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class Saab95Test {
@@ -220,7 +223,52 @@ class Saab95Test {
         assertEquals(newDirection, volvo.orientation.getCurrentDirection());
     }
 
+    @Test
+    void checkCarTransporterLoad(){
+        VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
+        Saab95 saab2 = new Saab95(Color.BLACK, 10, 10, "north");
+        Volvo240 volvo2 = new Volvo240(Color.BLACK, 0.1, 0.1, "north");
 
+        carTransport.load(saab2);
+        carTransport.load(volvo2);
 
+        assertEquals(1, carTransport.getCargo().toArray().length);
+    }
+    @Test
+    void checkCarTransporterMove(){
+        VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
+        Saab95 saab2 = new Saab95(Color.BLACK, 0.1, 0.1, "north");
+        carTransport.load(saab2);
 
+        double oldX = saab2.getX();
+        double oldY = saab2.getY();
+
+        carTransport.gas(1);
+        carTransport.move();
+
+        double newX = saab2.getX();
+        double newY = saab2.getY();
+
+        assertNotEquals(oldX, newX);
+        assertNotEquals(oldY, newY);
+
+        assertEquals(carTransport.getX(), newX);
+        assertEquals(carTransport.getY(), newY);
+    }
+    @Test
+    void checkCarTransporterUnload(){
+        VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
+        Saab95 saab2 = new Saab95(Color.BLACK, 0, 0, "north");
+        Volvo240 volvo2 = new Volvo240(Color.BLACK, 0, 0, "north");
+
+        carTransport.load(saab2);
+        carTransport.load(volvo2);
+
+        PersonalVehicle car = carTransport.unLoad();
+        assertEquals("Volvo240", car.getModelName());
+        car = carTransport.unLoad();
+        assertEquals("Saab95", car.getModelName());
+
+        assertNotEquals(0, car.getY());
+    }
 }

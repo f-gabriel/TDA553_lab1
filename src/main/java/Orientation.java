@@ -45,6 +45,14 @@ public class Orientation {
     public void setCurrentDirection(Directions direction){
         currentDirection = direction;
     }
+    public String getCurrentDirectionAsString(){
+        return switch (getCurrentDirection()) {
+            case NORTH -> "north";
+            case EAST -> "east";
+            case SOUTH -> "south";
+            case WEST -> "west";
+        };
+    }
 
     // new currentCoordinate = old [currentCoordinate] + value
     public void addToCoordinate(char coordinate, double value){

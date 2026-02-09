@@ -1,8 +1,7 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 
-//todo: load och unload behöver hantera car-transporterns och bilarnas relativa position,
-// samt uppdatera position för cargo vid move() (kopiera Orientation från VFM460 till Car?)
 public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVehicle> {
     Loader<PersonalVehicle> loader = new Loader<>(8); // hjälpklass till Loadable
 
@@ -14,13 +13,53 @@ public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVe
     public VolvoFM460CarTransport(double enginePower, Color color, double x, double y, String direction){
         super (enginePower, color, "Volvo FM 460",x, y, direction);}
 
+
+    // metoder från loadable
+    public ArrayList<PersonalVehicle> getCargo(){return loader.getCargo();}
     public void load(PersonalVehicle item) {
         double maxDistAllowed = 1;
         double distanceX = item.getX() - getX(); // hämtar x resp. y koordinater för både bil som ska lastas och
         double distanceY = item.getY() - getY(); // lastbilen som lastar och tar skillnaden för dem.
 
-        if (Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2)) <= maxDistAllowed)
-            loader.load(item);
+        if (Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2)) <= maxDistAllowed) {
+            if (getBedState() == 0) {
+                loader.load(item);
+            } else {
+                System.out.println("Rampen är stängd");
+            }
+        } else {
+            System.out.println("bilen är för långt borta");
+        }
     }
-    public PersonalVehicle unLoad() {return loader.unLoad();}
+    public PersonalVehicle unLoad() {
+        if (getBedState() == 0) {
+            PersonalVehicle car = loader.unLoad();
+
+            switch (orientation.currentDirection) {
+                case NORTH:
+                    car.addToCoordinate('y', -1);
+                    break;
+                case WEST:
+                    car.addToCoordinate('x', 1);
+                    break;
+                case SOUTH:
+                    car.addToCoordinate('y', 1);
+                    break;
+                case EAST: // Skulle kunna skrivas som default istället
+                    car.addToCoordinate('x', -1);
+                    break;
+            }
+            return car;
+        }
+        System.out.println("Rampen är stängd");
+        return null;
+    }
+
+    @Override
+    public void move() {
+        super.move();
+        for (PersonalVehicle car: getCargo()){
+            car.setPosition(getX(),getY());
+        }
+    }
 }
