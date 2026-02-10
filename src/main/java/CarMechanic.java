@@ -2,17 +2,16 @@
 // skapa märkesverkstäder för Saab pch Volvo
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarMechanic<T extends Car> implements Loadable<T> {
 
-    Loader<T> loader;
+    Loader<T> loader = new Loader<>(15);
 
-    public CarMechanic(int cargosize) {
-        this.loader = new Loader<>(cargosize);}
+    public CarMechanic(int cargoSize) {this.loader = new Loader<>(cargoSize);}
 
-    public ArrayList <T> getCargo(){
-        return loader.getCargo();
-    }
+
+    public List<T> getCargo() {return loader.getCargo();}
 
     public void load(T item){loader.load(item);}
     public T unLoad(){return loader.unLoad();}

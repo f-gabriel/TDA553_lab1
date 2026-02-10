@@ -223,6 +223,7 @@ class Saab95Test {
         assertEquals(newDirection, volvo.orientation.getCurrentDirection());
     }
 
+    //Test för lab 2:
     @Test
     void checkCarTransporterLoad(){
         VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
@@ -274,6 +275,21 @@ class Saab95Test {
     }
 
     @Test
+    void checkWrongObjectInCarTransport(){
+        VolvoFM460CarTransport transport = new VolvoFM460CarTransport();
+        VolvoFM460CarTransport cargo = new VolvoFM460CarTransport();
+        Saab95 saab = new Saab95();
+        transport.lower();
+
+        for (int i = 0; i != 10; i++){
+            transport.load(saab);
+        }
+        int listLength = transport.getCargo().toArray().length;
+        System.out.println(listLength);
+        assertEquals(8, listLength);
+    }
+
+    @Test
     void checkSaabInVolvoMechanic(){
         VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
     SaabMechanic mechanic = new SaabMechanic(1);
@@ -282,4 +298,7 @@ class Saab95Test {
 
 
     }
+
+
+    
 }

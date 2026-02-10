@@ -1,5 +1,5 @@
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVehicle> {
@@ -15,7 +15,7 @@ public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVe
 
 
     // metoder från loadable
-    public ArrayList<PersonalVehicle> getCargo(){return loader.getCargo();}
+    public List<PersonalVehicle> getCargo(){return loader.getCargo();}
     public void load(PersonalVehicle item) {
         double maxDistAllowed = 1;
         double distanceX = item.getX() - getX(); // Hämtar x resp. y koordinater för både bil som ska lastas och
