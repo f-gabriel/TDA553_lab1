@@ -3,15 +3,21 @@
 
 import java.util.ArrayList;
 
-abstract public class CarMechanic implements Loadable<Car> {
+public class CarMechanic<T extends Car> implements Loadable<T> {
 
-    Loader<Car> loader = new Loader<>(15);
+    Loader<T> loader;
 
-    public CarMechanic(int cargoSize) {this.loader = new Loader<>(cargoSize);}
+    public CarMechanic(int cargosize) {
+        this.loader = new Loader<>(cargosize);}
 
-    public void load(Car item){loader.load(item);}
-    public Car unLoad(int carNumber){
-        Car car = loader.getCargo().get(carNumber);
+    public ArrayList <T> getCargo(){
+        return loader.getCargo();
+    }
+
+    public void load(T item){loader.load(item);}
+    public T unLoad(){return loader.unLoad();}
+    public T unLoad(int carNumber){
+        T car = loader.getCargo().get(carNumber);
         loader.getCargo().remove(car);
         return car;
 
