@@ -1,4 +1,4 @@
-public class VolvoMechanic<T extends Volvo240> extends CarMechanic<T> {
+public class VolvoMechanic extends CarMechanic<Volvo240> {
     public VolvoMechanic(int cargosize) {
         super(cargosize);
     }}

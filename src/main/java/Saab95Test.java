@@ -272,4 +272,14 @@ class Saab95Test {
 
         assertNotEquals(0, car.getY());
     }
+
+    @Test
+    void checkSaabInVolvoMechanic(){
+        VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
+    SaabMechanic mechanic = new SaabMechanic(1);
+    Volvo240 volvo3 = new Volvo240();
+    mechanic.load(carTransport);
+
+
+    }
 }
