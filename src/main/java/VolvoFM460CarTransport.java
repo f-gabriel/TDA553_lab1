@@ -18,7 +18,7 @@ public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVe
     public ArrayList<PersonalVehicle> getCargo(){return loader.getCargo();}
     public void load(PersonalVehicle item) {
         double maxDistAllowed = 1;
-        double distanceX = item.getX() - getX(); // hämtar x resp. y koordinater för både bil som ska lastas och
+        double distanceX = item.getX() - getX(); // Hämtar x resp. y koordinater för både bil som ska lastas och
         double distanceY = item.getY() - getY(); // lastbilen som lastar och tar skillnaden för dem.
 
         if (Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2)) <= maxDistAllowed) {
@@ -55,6 +55,7 @@ public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVe
         return null;
     }
 
+    // metoder från Car
     @Override
     public void move() {
         super.move();

@@ -228,7 +228,7 @@ class Saab95Test {
         VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
         Saab95 saab2 = new Saab95(Color.BLACK, 10, 10, "north");
         Volvo240 volvo2 = new Volvo240(Color.BLACK, 0.1, 0.1, "north");
-
+        carTransport.lower();
         carTransport.load(saab2);
         carTransport.load(volvo2);
 
@@ -261,6 +261,7 @@ class Saab95Test {
         Saab95 saab2 = new Saab95(Color.BLACK, 0, 0, "north");
         Volvo240 volvo2 = new Volvo240(Color.BLACK, 0, 0, "north");
 
+        carTransport.lower();
         carTransport.load(saab2);
         carTransport.load(volvo2);
 
