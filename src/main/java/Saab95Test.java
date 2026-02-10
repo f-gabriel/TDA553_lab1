@@ -294,11 +294,25 @@ class Saab95Test {
         VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
     SaabMechanic mechanic = new SaabMechanic(1);
     Volvo240 volvo3 = new Volvo240();
-    mechanic.load(carTransport);
+    //mechanic.load(carTransport);
+        }
+
+    @Test
+    void checkScania(){
+        Scania scania = new Scania();
+        double oldY = scania.getY();
+        scania.gas(1);
+        scania.move();
+        assertNotEquals(oldY, scania.getY());
+
+        scania.stopEngine();
+        oldY = scania.getY();
+        scania.raiseBedHelper();
+        scania.gas(1);
+        scania.move();
+        assertEquals(oldY, scania.getY());
+        }
 
 
-    }
 
-
-    
 }

@@ -1,16 +1,34 @@
 import java.awt.*;
 
-// Todo: behöver ny implementation av raise() och lower(), extends Truck
+public class Scania extends Truck {
 
-public class Scania extends Car {
+    private double bedHelperDegree;
 
     public Scania() {
-        super(500, 2, Color.red, "Scania", 0, 0, "north");
+        super(500, Color.red, "Scania", 0, 0, "north");
+        this.bedHelperDegree = 0;
     }
 
-
-    public void truckBed() {
+    public void raiseBedHelper() {
+        if (getCurrentSpeed() == 0) {
+            bedHelperDegree = Math.min(bedHelperDegree + 10, 70);
+        }
     }
-}
 
+    public void lowerBedHelper() {
+        if (getCurrentSpeed() == 0) {
+            bedHelperDegree = Math.max(bedHelperDegree - 10, 0);
+        }
+    }
+
+    public double getBedHelperDegree() {
+        return bedHelperDegree;
+    }
+
+    @Override
+    public void move() {
+        if (bedHelperDegree == 0) {
+            super.move();
+        }
+    }}
 
