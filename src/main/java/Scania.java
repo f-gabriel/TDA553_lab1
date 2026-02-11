@@ -9,13 +9,13 @@ public class Scania extends Truck {
         this.bedHelperDegree = 0;
     }
 
-    public void raiseBedHelper() {
+    public void raise() {
         if (getCurrentSpeed() == 0) {
             bedHelperDegree = Math.min(bedHelperDegree + 10, 70);
         }
     }
 
-    public void lowerBedHelper() {
+    public void lower() {
         if (getCurrentSpeed() == 0) {
             bedHelperDegree = Math.max(bedHelperDegree - 10, 0);
         }

@@ -307,7 +307,7 @@ class Saab95Test {
 
         scania.stopEngine();
         oldY = scania.getY();
-        scania.raiseBedHelper();
+        scania.raise();
         scania.gas(1);
         scania.move();
         assertEquals(oldY, scania.getY());
