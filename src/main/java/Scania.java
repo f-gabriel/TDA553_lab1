@@ -30,5 +30,6 @@ public class Scania extends Truck {
         if (bedHelperDegree == 0) {
             super.move();
         }
-    }}
+    }
+}
 
