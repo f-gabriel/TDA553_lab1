@@ -239,22 +239,25 @@ class Saab95Test {
     void checkCarTransporterMove(){
         VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
         Saab95 saab2 = new Saab95(Color.BLACK, 0.1, 0.1, "north");
+
+        carTransport.lower();
         carTransport.load(saab2);
 
-        double oldX = saab2.getX();
-        double oldY = saab2.getY();
+        double original_x_saab = saab2.getX();
+        double original_y_saab = saab2.getY();
 
+        carTransport.raise();
         carTransport.gas(1);
         carTransport.move();
 
-        double newX = saab2.getX();
-        double newY = saab2.getY();
+        double x_after_move_saab = saab2.getX();
+        double y_after_move_saab = saab2.getY();
 
-        assertNotEquals(oldX, newX);
-        assertNotEquals(oldY, newY);
+        assertNotEquals(original_x_saab, x_after_move_saab);
+        assertNotEquals(original_y_saab, y_after_move_saab);
 
-        assertEquals(carTransport.getX(), newX);
-        assertEquals(carTransport.getY(), newY);
+        assertEquals(carTransport.getX(), x_after_move_saab);
+        assertEquals(carTransport.getY(), y_after_move_saab);
     }
     @Test
     void checkCarTransporterUnload(){

@@ -58,9 +58,12 @@ public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVe
     // metoder från Car
     @Override
     public void move() {
-        super.move();
-        for (PersonalVehicle car: getCargo()){
-            car.setPosition(getX(),getY());
+        if (getBedState() == 1) {
+            super.move();
+            for (PersonalVehicle car: getCargo()){
+                car.setPosition(getX(),getY());
+        }
+
         }
     }
 }

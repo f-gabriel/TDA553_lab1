@@ -1,10 +1,11 @@
-//todo se över bedState. Ska 1 vara uppe eller nere?
+
 
 public class TruckBedHelper implements TruckBed{
-    int maxAngle = 1;
-    public int bedState = 1;
+    int maxAngle;
+    public int bedState;
 
-    public TruckBedHelper(){
+    public TruckBedHelper(int maxAngle){
+        this.maxAngle =
         this.bedState = maxAngle;
     }
     public void raise(){bedState = maxAngle;}

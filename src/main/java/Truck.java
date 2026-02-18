@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public class Truck extends Car implements TruckBed {
-    TruckBed truckBed = new TruckBedHelper();
+    TruckBed truckBed = new TruckBedHelper(1);
 
     public Truck(double enginePower, Color color, String modelName, double x, double y, String direction) {
         super(enginePower, 2, color, modelName, x, y, direction);}
