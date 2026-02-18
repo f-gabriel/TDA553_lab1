@@ -5,10 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarMechanic<T extends Car> implements Loadable<T> {
+    Loader<T> loader;
+    Orientation orientation;
 
-    Loader<T> loader = new Loader<>(15);
-
-    public CarMechanic(int cargoSize) {this.loader = new Loader<>(cargoSize);}
+    public CarMechanic() {
+        this.loader = new Loader<>(15);
+        this.orientation = new Orientation(0,0, "north");
+    }
+    public CarMechanic(int cargoSize, double xCoordinate, double yCoordinate, String direction) {
+        this.loader = new Loader<>(cargoSize);
+        this.orientation = new Orientation(xCoordinate, yCoordinate, direction);
+    }
 
 
     public List<T> getCargo() {return loader.getCargo();}

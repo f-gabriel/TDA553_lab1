@@ -1,5 +1,7 @@
 public class SaabMechanic extends CarMechanic<Saab95>{
-    public SaabMechanic(int cargosize) {super(cargosize);
+    public SaabMechanic(){super();}
+    public SaabMechanic(int cargoSize, double xCoordinate, double yCoordinate, String direction) {
+        super(cargoSize, xCoordinate, yCoordinate, direction);
     }
 }
 

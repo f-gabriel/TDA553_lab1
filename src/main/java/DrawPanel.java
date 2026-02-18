@@ -6,6 +6,8 @@ import javax.swing.*;
 
 // This panel represents the animated part of the view with the car images.
 
+
+// TODO framtid: DrawPanel ska inte behöva känna till vad den ritar (dvs ta ut specifika bilar, verkstäder etc)
 public class DrawPanel extends JPanel {
 
     BufferedImage volvoImage;
@@ -17,7 +19,7 @@ public class DrawPanel extends JPanel {
     BufferedImage scaniaImage;
     Point scaniaPoint = new Point(0, 200);
 
-    BufferedImage volvoWorkshopImage;
+    BufferedImage volvoWorkshopImage; //todo: kanske vill sätta denna så att volvon kan köra in i den
     Point volvoWorkshopPoint = new Point(300, 300);
 
     public void moveIt(Car car, double x, double y) {

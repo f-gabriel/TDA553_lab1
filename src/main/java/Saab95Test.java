@@ -295,7 +295,7 @@ class Saab95Test {
     @Test
     void checkSaabInVolvoMechanic(){
         VolvoFM460CarTransport carTransport = new VolvoFM460CarTransport();
-    SaabMechanic mechanic = new SaabMechanic(1);
+    SaabMechanic mechanic = new SaabMechanic(1, 0,0,"north");
     Volvo240 volvo3 = new Volvo240();
     //mechanic.load(carTransport);
         }

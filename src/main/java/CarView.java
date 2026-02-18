@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 
+
+// todo framtid: dela upp CarView i delar som {skapar fönstret}, {skapar knappar}, {talar med carC}, etc
 public class CarView extends JFrame{
     private static final int X = 800;
     private static final int Y = 800;
@@ -56,7 +58,7 @@ public class CarView extends JFrame{
         this.add(drawPanel);
 
 
-
+        // todo: möjligen sätta max till 1?
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
@@ -108,9 +110,10 @@ public class CarView extends JFrame{
             }
         });
 
-        /*brakeButton.addActionListener(new ActionListener() {
+        brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int brakeAmount = gasAmount;
                 carC.brake(brakeAmount);
             }
         });
@@ -150,7 +153,7 @@ public class CarView extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 carC.stopEngine();
             }
-        });*/
+        });
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();

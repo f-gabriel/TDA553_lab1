@@ -9,6 +9,9 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  */
 
+// todo: se gas() / brake()
+// todo framtid: förslag: CarController är enda klassen som interagerar direkt med bilarna.
+//  den ska inte instansiera en CarView
 public class CarController {
     // member fields:
 
@@ -29,7 +32,8 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240()
+        // todo: vill vi ändra orienteringen på bilarna så att de inte kör rakt ner?
+        cc.cars.add(new Volvo240());
         cc.cars.add(new Saab95());
         cc.cars.add(new Scania());
 
@@ -47,6 +51,8 @@ public class CarController {
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.
     * */
+
+    // todo: behöver även stoppa bilarna när de når kanten (kanske måste göras från CarView?)
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
               for (Car car : cars) {
@@ -62,14 +68,25 @@ public class CarController {
 
     // Calls the gas method for each car once
     void gas(int amount) {
-        double gas = ((double) amount) / 100;
+        double gas = ((double) amount) / 100; // behöver vara 1 eller 0. Kan också omimplementera funktionerna i Car
+
+        /// för testning
+        gas = amount;
+        if (amount != 0) {gas = 1;}
+        ///
+
         for (Car car : cars
                 ) {
             car.gas(gas);
         }
     }
     void brake(int amount) {
-        double brake = ((double) amount) / 100;
+        double brake = ((double) amount) / 100; // se gas()
+
+        /// för testning
+        brake = amount;
+        if (amount != 0) {brake = 1;}
+        ///
         for (Car car : cars) {
             car.brake(brake);
         }
@@ -88,11 +105,11 @@ public class CarController {
             }
         }
     }
-        void lifBed() {
-            for (Car car : cars) {
-                if (car instanceof Scania) {
-                    if (car.getCurrentSpeed() == 0) {
-                        ((Scania) car).raise();
+    void liftBed() {
+        for (Car car : cars) {
+            if (car instanceof Scania) {
+                if (car.getCurrentSpeed() == 0) { //
+                    ((Scania) car).raise();
                     }
                 }
             }
