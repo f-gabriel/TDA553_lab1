@@ -23,6 +23,7 @@ abstract public class Car extends Engine implements Movable{
     public Orientation.Directions getCurrentDirection(){return orientation.currentDirection;}
     public void setPosition(double x, double y){orientation.setPosition(x,y);}
     public void addToCoordinate(char coordinate, double amount){orientation.addToCoordinate(coordinate, amount);}
+    public String getCurrentDirectionAsString(){return orientation.getCurrentDirectionAsString();}
 
     // övriga get-/set-funktioner
     public int getNrDoors(){return nrDoors;}

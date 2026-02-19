@@ -154,6 +154,57 @@ class Saab95Test {
     }
 
     @Test
+    void checkMoveSimple(){
+        double startX = saab.getX();
+        double startY = saab.getY();
+        double startSpeed = saab.getCurrentSpeed();
+        saab.startEngine();
+        saab.gas(1);
+        //double beforeMoveX = saab.getX();
+        double beforeMoveY = saab.getY();
+        double beforeMoveSpeed = saab.getCurrentSpeed();
+
+
+        // saab ska inte ha rört sig innan move()
+        //assertEquals(startX, beforeMoveX);
+        assertEquals(startY, beforeMoveY);
+        // Ska ändå ha annan hastighet
+        assertNotEquals(startSpeed, beforeMoveSpeed);
+
+        saab.move();
+        double afterFirstMoveX = saab.getX();
+        double afterFirstMoveY = saab.getY();
+        double afterFirstMoveSpeed = saab.getCurrentSpeed();
+
+        // Ska nu ha rört sig
+        //assertNotEquals(beforeMoveX, afterFirstMoveX);
+        assertNotEquals(beforeMoveY, afterFirstMoveY);
+        // speed ska vara samma
+        assertEquals(beforeMoveSpeed, afterFirstMoveSpeed);
+
+        saab.stopEngine();
+        double afterStopX = saab.getX();
+        double afterStopY = saab.getY();
+        double afterStopSpeed = saab.getCurrentSpeed();
+
+        // x och y ska vara samma, speed ska vara ändrad
+        //assertEquals(afterFirstMoveX, afterStopX);
+        assertEquals(afterFirstMoveY, afterStopY);
+        assertEquals(0, afterStopSpeed);
+
+        saab.move();
+        double afterLastMoveX = saab.getX();
+        double afterLastMoveY = saab.getY();
+        double afterLastMoveSpeed = saab.getCurrentSpeed();
+
+        // alla ska vara samma som förut
+        //assertEquals(afterStopX, afterLastMoveX);
+        assertEquals(afterStopY, afterLastMoveY);
+        assertEquals(afterStopSpeed, afterLastMoveSpeed);
+
+    }
+
+    @Test
     void CheckTurnLeft() {
         var newDirection = Orientation.Directions.WEST;
         saab.turnLeft();
