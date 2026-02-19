@@ -8,6 +8,11 @@ public class Saab95 extends PersonalVehicle{
         super(power, 2, Color.red, "Saab95", 0, 0, "north");
 	    turboOn = false;
     }
+
+    public Saab95(double x, double y, String direction){
+        super(125, 2,Color.red, "Saab95", x, y, direction);
+        turboOn = false;
+    }
     public Saab95(Color color, double x, double y, String direction){
         super(125, 2, color, "Saab95", x, y, direction);
         turboOn = false;

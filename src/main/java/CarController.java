@@ -24,8 +24,10 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-        ArrayList<Car> cars = new ArrayList<>();
+    ArrayList<Car> cars = new ArrayList<>();
 
+    // todo framtid: Denna ska inte vara här!!
+    VolvoMechanic volvoMechanic = new VolvoMechanic(15, 300, 0, "north");
     //methods:
 
     public static void main(String[] args) {
@@ -33,10 +35,14 @@ public class CarController {
         CarController cc = new CarController();
 
         // todo: vill vi ändra orienteringen på bilarna så att de inte kör rakt ner?
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95());
-        cc.cars.add(new Scania());
+        // (uppdatering: tog mig friheten att göra detta. Har även uppdaterat volvo
+        // och saab klasserna så att det går att instansiera med endast orientering)
+        cc.cars.add(new Volvo240(0, 0, "east"));
+        cc.cars.add(new Saab95(0, 100, "east"));
+        cc.cars.add(new Scania(0, 200, "east"));
 
+        // todo: fixa så att det går att hitta specifika bilar utan att veta dess nummer i listan
+        // Dessa kan nu tas bort, men vi behöver fortfarande fixa problemet med att hitta bilarna.
         cc.cars.get(0).setPosition(0, 0);
         cc.cars.get(1).setPosition(0, 100);
         cc.cars.get(2).setPosition(0, 200);
@@ -56,15 +62,37 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
               for (Car car : cars) {
-                car.move();
-                int x = (int) Math.round(car.getX());
-                int y = (int) Math.round(car.getY());
+                  // Detta är helt fukt. Om ni har en bättre idé får ni gärna göra ändringar
+                  // Vi behöver veta om bilen passerar carMechanic eftersom den så som det ser ut kan "hoppa över" den
+                  // vi behöver alltså position innan och efter move
+                  int oldX = (int) Math.round(car.getX());
+                  int oldY = (int) Math.round(car.getY());
+
+                  car.move();
+                  int x = (int) Math.round(car.getX());
+                  int y = (int) Math.round(car.getY());
+
+                  //if (car_at_mechanic(oldX, oldY, x, y)){
+
+                  //}
+
+                  // todo notera: en brute force lösning ska inte vara såhär i framtiden. Inkluderar alla hjälpmetoder
+                  //  metoden är här just nu för att det är här vi uppdaterar frame:t
+                  // fungerar inte just nu. behöver nog en actionListener till för detta.
+                  // bör vara lätt att fixa när jag väl förstår hur exakt de funkar.
+                  if(car_at_edge(x, y)){
+
+                      turn_at_edge(car);
+                }
+
+
                 frame.drawPanel.moveIt(car, x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
         }
     }
+
 
     // Calls the gas method for each car once
     void gas(int amount) {
@@ -134,6 +162,44 @@ public class CarController {
             car.stopEngine();
         }
     }
+
+
+
+    boolean car_at_edge(int x, int y){
+        int low_edge = 0;
+        int high_edge = 800; //CarView sätter fönstret till 800
+        boolean at_edge = (x < low_edge) || (y < low_edge);
+        at_edge = at_edge || (x > high_edge) || (y > high_edge);
+        return at_edge;
+    }
+    void turn_at_edge(Car car){
+        car.stopEngine();
+        car.turnLeft();
+        car.turnLeft();
+        car.startEngine();
+    }
+
+
+    // En dummy-metod i framtiden kommer den iterera över en lista av carMechanics, så som bilmetoderna fungerar
+    // ignorera kod (/eller om ni vill fixa den själva) tänkte lite fel. är lättfixat, men gör det sedan när
+    // jag kommit på hur actionListeners fungerar
+    boolean car_at_mechanic(int oldX, int oldY, int x, int y){
+        int mechanicX = (int) Math.round(volvoMechanic.getX());
+        int mechanicY = (int) Math.round(volvoMechanic.getY());
+        boolean atMechanic;
+
+        atMechanic = oldX < mechanicX && mechanicX < x; // om oldX < mechX < x -> bilen har passerat
+        atMechanic = atMechanic || (oldX > mechanicX && mechanicX > x);
+        atMechanic = atMechanic || (oldY < mechanicY && mechanicY < y);
+        atMechanic = atMechanic || (oldY > mechanicY && mechanicY > y);
+        return atMechanic;
+    }
+    void carMechanicLoad(){
+
+    }
+
+
+
     }
 
 

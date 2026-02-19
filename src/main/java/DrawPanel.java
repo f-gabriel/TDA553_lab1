@@ -20,7 +20,7 @@ public class DrawPanel extends JPanel {
     Point scaniaPoint = new Point(0, 200);
 
     BufferedImage volvoWorkshopImage; //todo: kanske vill sätta denna så att volvon kan köra in i den
-    Point volvoWorkshopPoint = new Point(300, 300);
+    Point volvoWorkshopPoint = new Point(300, 0); // (har nu uppdaterat y positionen)
 
     public void moveIt(Car car, double x, double y) {
         car.setPosition(x, y);

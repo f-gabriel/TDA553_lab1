@@ -8,6 +8,9 @@ public class Scania extends Truck {
         super(500, Color.red, "Scania", 0, 0, "north");
         this.bedHelperDegree = 0;
     }
+    public Scania(double x, double y, String direction){
+        super(100, Color.red, "Scania", x, y, direction);
+    }
 
     public void raise() {
         if (getCurrentSpeed() == 0) {

@@ -26,6 +26,8 @@ public class CarMechanic<T extends Car> implements Loadable<T> {
         T car = loader.getCargo().get(carNumber);
         loader.getCargo().remove(car);
         return car;
-
     }
+
+    public double getX(){return orientation.getX();}
+    public double getY(){return orientation.getY();}
 }
