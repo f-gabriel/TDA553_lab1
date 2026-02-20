@@ -97,7 +97,7 @@ public class CarController {
     void gas(int amount) {
         double gas = ((double) amount) / 100; // behöver vara 1 eller 0. Kan också omimplementera funktionerna i Car
 
-        /// för testning
+        /// för
         gas = amount;
         if (amount != 0) {gas = 1;}
         ///

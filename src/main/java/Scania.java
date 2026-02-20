@@ -12,14 +12,15 @@ public class Scania extends Truck {
         super(100, Color.red, "Scania", x, y, direction);
     }
 
+    // kolla med delta
     public void raise() {
-        if (getCurrentSpeed() == 0) {
+        if ((int)getCurrentSpeed() == 0) {
             bedHelperDegree = Math.min(bedHelperDegree + 10, 70);
         }
     }
 
     public void lower() {
-        if (getCurrentSpeed() == 0) {
+        if ((int)getCurrentSpeed() == 0) {
             bedHelperDegree = Math.max(bedHelperDegree - 10, 0);
         }
     }
