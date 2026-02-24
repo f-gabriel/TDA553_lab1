@@ -1,3 +1,5 @@
+package Loader;
+
 import java.util.ArrayList;
 
 public interface ICanLoad<T> {

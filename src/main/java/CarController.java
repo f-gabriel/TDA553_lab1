@@ -1,3 +1,9 @@
+import Cars.Car;
+import Cars.Saab95;
+import Cars.Scania;
+import Cars.Volvo240;
+import Mechanic.VolvoMechanic;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,7 +84,7 @@ public class CarController {
                   int y = (int) Math.round(car.getY());
 
                   if (car_at_mechanic(oldX, oldY, x, y)){
-                      if (car instanceof  Volvo240) {
+                      if (car instanceof Volvo240) {
                           carMechanicLoad((Volvo240) car);
                           x = (int) Math.round(car.getX());
                           y = (int) Math.round(car.getY());
@@ -95,7 +101,7 @@ public class CarController {
 
     // Calls the gas method for each car once
     void gas(int amount) {
-        double gas = ((double) amount) / 100; // behöver vara 1 eller 0. Kan också omimplementera funktionerna i Car
+        double gas = ((double) amount) / 100; // behöver vara 1 eller 0. Kan också omimplementera funktionerna i Cars.Car
 
         /// för
         gas = amount;

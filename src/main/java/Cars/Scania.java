@@ -1,3 +1,5 @@
+package Cars;
+
 import java.awt.*;
 
 public class Scania extends Truck {
@@ -5,11 +7,11 @@ public class Scania extends Truck {
     private double bedHelperDegree;
 
     public Scania() {
-        super(500, Color.red, "Scania", 0, 0, "north");
+        super(500, Color.red, "Cars.Scania", 0, 0, "north");
         this.bedHelperDegree = 0;
     }
     public Scania(double x, double y, String direction){
-        super(100, Color.red, "Scania", x, y, direction);
+        super(100, Color.red, "Cars.Scania", x, y, direction);
     }
 
     // kolla med delta

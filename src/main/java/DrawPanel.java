@@ -1,3 +1,5 @@
+import Cars.Car;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -25,15 +27,15 @@ public class DrawPanel extends JPanel {
     public void moveIt(Car car, double x, double y) {
         car.setPosition(x, y);
         switch (car.getClass().getSimpleName()) {
-            case "Volvo240":
+            case "Cars.Volvo240":
                 volvoPoint.x = (int) x;
                 volvoPoint.y = (int) y;
                 break;
-            case "Saab95":
+            case "Cars.Saab95":
                 saabPoint.x = (int) x;
                 saabPoint.y = (int) y;
                 break;
-            case "Scania":
+            case "Cars.Scania":
                 scaniaPoint.x = (int) x;
                 scaniaPoint.y = (int) y;
                 break;

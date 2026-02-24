@@ -1,4 +1,4 @@
-
+package Cars;
 
 public class TruckBedHelper implements TruckBed{
     int maxAngle;

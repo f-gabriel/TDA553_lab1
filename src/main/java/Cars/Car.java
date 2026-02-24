@@ -1,6 +1,8 @@
+package Cars;
+
 import java.awt.*;
 
-abstract public class Car extends Engine implements Movable{
+abstract public class Car extends Engine implements Movable {
     int nrDoors; // Number of doors on the car
     double currentSpeed; // The current speed of the car
     Color color; // Color of the car
@@ -52,48 +54,48 @@ abstract public class Car extends Engine implements Movable{
     // Funktioner som ändrar bilens riktning och position
     public void move() {
         switch (orientation.currentDirection) {
-            case NORTH:
+            case Orientation.Directions.NORTH:
                 addToCoordinate('y', currentSpeed);
                 break;
-            case WEST:
+            case Orientation.Directions.WEST:
                 addToCoordinate('x', -currentSpeed);
                 break;
-            case SOUTH:
+            case Orientation.Directions.SOUTH:
                 addToCoordinate('y', -currentSpeed);
                 break;
-            case EAST: // Skulle kunna skrivas som default istället
+            case Orientation.Directions.EAST: // Skulle kunna skrivas som default istället
                 addToCoordinate('x', currentSpeed);
                 break;
         }
     }
     public void turnLeft(){
         switch (orientation.getCurrentDirection()){
-            case NORTH:
+            case Orientation.Directions.NORTH:
                 orientation.setCurrentDirection(Orientation.Directions.WEST);
                 break;
-            case WEST:
+            case Orientation.Directions.WEST:
                 orientation.setCurrentDirection(Orientation.Directions.SOUTH);
                 break;
-            case SOUTH:
+            case Orientation.Directions.SOUTH:
                 orientation.setCurrentDirection(Orientation.Directions.EAST);
                 break;
-            case EAST: // Skulle kunna skrivas som default istället
+            case Orientation.Directions.EAST: // Skulle kunna skrivas som default istället
                 orientation.setCurrentDirection(Orientation.Directions.NORTH);
                 break;
         }
     };
     public void turnRight(){
         switch (orientation.getCurrentDirection()){
-            case NORTH:
+            case Orientation.Directions.NORTH:
                 orientation.setCurrentDirection(Orientation.Directions.EAST);
                 break;
-            case EAST:
+            case Orientation.Directions.EAST:
                 orientation.setCurrentDirection(Orientation.Directions.SOUTH);
                 break;
-            case SOUTH:
+            case Orientation.Directions.SOUTH:
                 orientation.setCurrentDirection(Orientation.Directions.WEST);
                 break;
-            case WEST: // Skulle kunna skrivas som default istället
+            case Orientation.Directions.WEST: // Skulle kunna skrivas som default istället
                 orientation.setCurrentDirection(Orientation.Directions.NORTH);
                 break;
         }

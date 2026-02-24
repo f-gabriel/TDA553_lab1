@@ -1,9 +1,9 @@
-import org.junit.jupiter.api.AfterEach;
+package Cars;
+import Mechanic.SaabMechanic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -321,9 +321,9 @@ class Saab95Test {
         carTransport.load(volvo2);
 
         PersonalVehicle car = carTransport.unLoad();
-        assertEquals("Volvo240", car.getModelName());
+        assertEquals("Cars.Volvo240", car.getModelName());
         car = carTransport.unLoad();
-        assertEquals("Saab95", car.getModelName());
+        assertEquals("Cars.Saab95", car.getModelName());
 
         assertNotEquals(0, car.getY());
     }

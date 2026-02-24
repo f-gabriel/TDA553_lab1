@@ -1,6 +1,8 @@
+package Loader;
+
 import java.util.ArrayList;
 
-// hjälpklass till Loadable
+// hjälpklass till Loader.Loadable
 public class Loader<T> implements Loadable<T> {
     ArrayList<T> cargo;
     int cargoSize;

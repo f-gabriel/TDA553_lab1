@@ -1,3 +1,5 @@
+package Cars;
+
 import java.awt.*;
 
 public class Saab95 extends PersonalVehicle{
@@ -5,16 +7,16 @@ public class Saab95 extends PersonalVehicle{
 
     public Saab95(){
         double power = 125;
-        super(power, 2, Color.red, "Saab95", 0, 0, "north");
+        super(power, 2, Color.red, "Cars.Saab95", 0, 0, "north");
 	    turboOn = false;
     }
 
     public Saab95(double x, double y, String direction){
-        super(125, 2,Color.red, "Saab95", x, y, direction);
+        super(125, 2,Color.red, "Cars.Saab95", x, y, direction);
         turboOn = false;
     }
     public Saab95(Color color, double x, double y, String direction){
-        super(125, 2, color, "Saab95", x, y, direction);
+        super(125, 2, color, "Cars.Saab95", x, y, direction);
         turboOn = false;
     }
 

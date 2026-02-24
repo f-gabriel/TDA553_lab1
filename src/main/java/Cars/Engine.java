@@ -1,5 +1,7 @@
+package Cars;
+
 abstract public class Engine {
-    double enginePower; // Engine power of the engine
+    double enginePower; // Cars.Engine power of the engine
 
     public Engine(double enginePower){
         this.enginePower = enginePower;

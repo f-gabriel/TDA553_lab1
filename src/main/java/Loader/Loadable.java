@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package Loader;
+
 import java.util.List;
 
 public interface Loadable <T> {

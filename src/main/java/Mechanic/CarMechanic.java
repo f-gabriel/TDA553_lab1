@@ -1,7 +1,10 @@
-// todo: ffa fixa så att unload() följer labinstruktionerna. Kanske kräver omskrivning av load() med.
+package Mechanic;// todo: ffa fixa så att unload() följer labinstruktionerna. Kanske kräver omskrivning av load() med.
 // skapa märkesverkstäder för Saab pch Volvo
+import Loader.Loadable;
+import Loader.Loader;
+import Cars.Car;
+import Cars.Orientation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CarMechanic<T extends Car> implements Loadable<T> {
@@ -9,11 +12,11 @@ public class CarMechanic<T extends Car> implements Loadable<T> {
     Orientation orientation;
 
     public CarMechanic() {
-        this.loader = new Loader<>(15);
+        this.loader = new Loader<T>(15);
         this.orientation = new Orientation(0,0, "north");
     }
     public CarMechanic(int cargoSize, double xCoordinate, double yCoordinate, String direction) {
-        this.loader = new Loader<>(cargoSize);
+        this.loader = new Loader<T>(cargoSize);
         this.orientation = new Orientation(xCoordinate, yCoordinate, direction);
     }
 

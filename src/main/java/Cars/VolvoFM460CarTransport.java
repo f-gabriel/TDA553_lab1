@@ -1,9 +1,12 @@
+package Cars;
+import Loader.Loadable;
+import Loader.Loader;
 import java.awt.*;
 import java.util.List;
 
 
 public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVehicle> {
-    Loader<PersonalVehicle> loader = new Loader<>(8); // hjälpklass till Loadable
+    Loader<PersonalVehicle> loader = new Loader<PersonalVehicle>(8); // hjälpklass till Loader.Loadable
 
     // default instansiering av klassen
     public VolvoFM460CarTransport(){
@@ -36,16 +39,16 @@ public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVe
             PersonalVehicle car = loader.unLoad();
 
             switch (orientation.currentDirection) {
-                case NORTH:
+                case Orientation.Directions.NORTH:
                     car.addToCoordinate('y', -1);
                     break;
-                case WEST:
+                case Orientation.Directions.WEST:
                     car.addToCoordinate('x', 1);
                     break;
-                case SOUTH:
+                case Orientation.Directions.SOUTH:
                     car.addToCoordinate('y', 1);
                     break;
-                case EAST: // Skulle kunna skrivas som default istället
+                case Orientation.Directions.EAST: // Skulle kunna skrivas som default istället
                     car.addToCoordinate('x', -1);
                     break;
             }
@@ -55,7 +58,7 @@ public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVe
         return null;
     }
 
-    // metoder från Car
+    // metoder från Cars.Car
     @Override
     public void move() {
         if (getBedState() == 1) {

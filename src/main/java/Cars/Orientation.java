@@ -1,3 +1,5 @@
+package Cars;
+
 // Class som hanterar position och riktning
 public class Orientation {
     double xCoordinate;
