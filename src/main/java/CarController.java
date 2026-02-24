@@ -27,28 +27,13 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+
 
     // todo framtid: Denna ska inte vara här!!
     VolvoMechanic volvoMechanic = new VolvoMechanic(15, 300, 0, "north");
     //methods:
 
     public static void main(String[] args) {
-        // Instance of this class
-        CarController cc = new CarController();
-
-        // todo: vill vi ändra orienteringen på bilarna så att de inte kör rakt ner?
-        // (uppdatering: tog mig friheten att göra detta. Har även uppdaterat volvo
-        // och saab klasserna så att det går att instansiera med endast orientering)
-        cc.cars.add(new Volvo240(0, 0, "east"));
-        cc.cars.add(new Saab95(0, 100, "east"));
-        cc.cars.add(new Scania(0, 200, "east"));
-
-        // todo: fixa så att det går att hitta specifika bilar utan att veta dess nummer i listan
-        // Dessa kan nu tas bort, men vi behöver fortfarande fixa problemet med att hitta bilarna.
-        cc.cars.get(0).setPosition(0, 0);
-        cc.cars.get(1).setPosition(0, 100);
-        cc.cars.get(2).setPosition(0, 200);
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
