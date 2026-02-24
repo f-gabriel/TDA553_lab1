@@ -1,7 +1,4 @@
-import Cars.Car;
-import Cars.Saab95;
-import Cars.Scania;
-import Cars.Volvo240;
+import Cars.*;
 import Mechanic.VolvoMechanic;
 
 import javax.swing.*;
@@ -126,21 +123,21 @@ public class CarController {
     }
     void turboOn() {
         for (Car car : cars) {
-            if (car instanceof  Saab95) {
+            if (car instanceof Turbochargable) {
                 ((Saab95) car).setTurboOn();
             }
             }
         }
     void turboOff() {
         for (Car car : cars) {
-            if (car instanceof Saab95) {
+            if (car instanceof Turbochargable) {
                 ((Saab95) car).setTurboOff();
             }
         }
     }
     void liftBed() {
         for (Car car : cars) {
-            if (car instanceof Scania) {
+            if (car instanceof Truck) {
                 if (car.getCurrentSpeed() == 0) { //
                     ((Scania) car).raise();
                     }
