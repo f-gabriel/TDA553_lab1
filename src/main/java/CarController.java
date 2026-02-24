@@ -123,14 +123,14 @@ public class CarController {
     }
     void turboOn() {
         for (Car car : cars) {
-            if (car instanceof Turbochargable) {
+            if (car instanceof TurboChargable) {
                 ((Saab95) car).setTurboOn();
             }
             }
         }
     void turboOff() {
         for (Car car : cars) {
-            if (car instanceof Turbochargable) {
+            if (car instanceof TurboChargable) {
                 ((Saab95) car).setTurboOff();
             }
         }
