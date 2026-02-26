@@ -46,7 +46,7 @@ public class CarController {
     * view to update its images. Change this method to your needs.
     * */
 
-    // todo: behöver även stoppa bilarna när de når kanten (kanske måste göras från CarView?)
+
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
               for (Car car : cars) {
