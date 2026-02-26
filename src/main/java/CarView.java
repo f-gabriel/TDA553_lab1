@@ -16,20 +16,24 @@ import java.awt.event.ActionListener;
 
 // todo framtid: dela upp CarView i delar som {skapar fönstret}, {skapar knappar}, {talar med carC}, etc
 public class CarView extends JFrame{
-    private static final int X = 800;
-    private static final int Y = 800;
+    private static final int X = 800;  //finns nu också i UserInput
+    private static final int Y = 800;  //finns nu också i UserInput
 
     // The controller member
     CarController carC;
 
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
-    JPanel controlPanel = new JPanel();
+    JPanel controlPanel = new JPanel();  //finns nu också i UserInput
 
+
+    //finns nu också i UserInput
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
+
+
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
