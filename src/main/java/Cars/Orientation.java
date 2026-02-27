@@ -1,7 +1,7 @@
 package Cars;
 
 // Class som hanterar position och riktning
-public class Orientation {
+public class Orientation implements HasOrientation {
     double xCoordinate;
     double yCoordinate;
 

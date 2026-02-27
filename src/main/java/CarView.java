@@ -1,9 +1,5 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -18,7 +14,7 @@ public class CarView extends JFrame{
     private static final int FrameSizeY = 800;  //finns nu också i UserInput
 
     // The controller member
-    CarController carC;
+    Model gameModel;
 
     DrawPanel drawPanel = new DrawPanel(FrameSizeX, FrameSizeY -240);
 
@@ -44,8 +40,8 @@ public class CarView extends JFrame{
 //    JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc){
-        this.carC = cc;
+    public CarView(String framename, Model gameModel){
+        this.gameModel = gameModel;
         initComponents(framename);
     }
 

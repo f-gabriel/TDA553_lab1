@@ -2,7 +2,7 @@ package Cars;
 
 import java.awt.*;
 
-abstract public class Car extends Engine implements Movable {
+abstract public class Car extends Engine implements Movable, HasOrientation {
     int nrDoors; // Number of doors on the car
     double currentSpeed; // The current speed of the car
     Color color; // Color of the car
