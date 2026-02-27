@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import Cars.*;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -18,7 +19,7 @@ public class CarView extends JFrame{
 
     DrawPanel drawPanel = new DrawPanel(FrameSizeX, FrameSizeY -240);
 
-    ControlPanel controlPanel = new ControlPanel();  //finns nu också i UserInput
+    static ControlPanel controlPanel = new ControlPanel();  //finns nu också i UserInput
 
 
     //finns nu också i UserInput
@@ -164,5 +165,13 @@ public class CarView extends JFrame{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void addCar(Car car){
+        controlPanel.addCar(car);
+    }
+
+    public void draw(Car car, double x, double y){
+        drawPanel.moveIt(car, x, y);
+        drawPanel.repaint();
     }
 }

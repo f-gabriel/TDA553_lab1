@@ -7,9 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Model {
-
-
-
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with a listener (see below) that executes the statements
@@ -20,22 +17,35 @@ public class Model {
     ArrayList<HasOrientation> gameObjects = new ArrayList<>(); // låter oss lägga in alla spelobjekt i listan
 
 
-    public void Model(){
-    gameObjects.add(new Volvo240(0, 0, "east"));
-    gameObjects.add(new Saab95(0, 100, "east"));
-    gameObjects.add(new Scania(0, 200, "east"));
-
-    gameObjects.add(new VolvoMechanic(15, 300, 0, "north"));
-
-    }
-
     public static void main(String[] args) {
         Model gm = new Model();
         // Start a new view and send a reference of self
         gm.carC = new CarController();
+
+        gm.gameObjects.add(new Volvo240(0, 0, "east"));
+        gm.gameObjects.add(new Saab95(0, 100, "east"));
+        gm.gameObjects.add(new Scania(0, 200, "east"));
+        gm.gameObjects.add(new VolvoMechanic(15, 300, 0, "north"));
+
         gm.frame = new CarView("CarSim 1.0", gm);
 
+        gm.addCars();
 
+        // Start the timer
+        gm.timer.start();
+
+
+
+
+    }
+
+    private void addCars(){
+
+        for (HasOrientation gameObject : gameObjects) {
+            if(gameObject instanceof Car car){
+                frame.addCar(car);
+            }
+        }
     }
 
     private class TimerListener implements ActionListener {
@@ -56,14 +66,13 @@ public class Model {
                     carC.move(car);
                     int x = (int) Math.round(gameObject.getX());
                     int y = (int) Math.round(gameObject.getY());
+                    frame.draw(car, x, y);
 
                 }
 
 
-
-                // Start the timer
-                timer.start();
                 // todo: skapa uppdatering
+
             }
         }
     }

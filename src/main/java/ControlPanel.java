@@ -1,15 +1,19 @@
+import Cars.Car;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ControlPanel extends JPanel {
     private static final int FrameSizeX = 800;
     private static final int FrameSizeY = 800;
 
     CarController carC;
+    ArrayList<Car> cars;
 
     JPanel controlPanel = new JPanel();
 
@@ -31,9 +35,14 @@ public class ControlPanel extends JPanel {
 
     public  ControlPanel(){
         initComponents();
+        this.carC = new CarController();
+        this.cars = new ArrayList<>();
     }
 
+    public void addCar(Car car){
+        cars.add(car);
 
+    }
 
 
 
@@ -51,7 +60,8 @@ public class ControlPanel extends JPanel {
             public void stateChanged(ChangeEvent e) {
                 gasAmount = (int) ((JSpinner)e.getSource()).getValue();
             }
-        });
+            }
+        );
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
@@ -87,7 +97,8 @@ public class ControlPanel extends JPanel {
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
+                for(Car car : cars){
+                carC.gas(gasAmount, car);}
             }
         });
 
@@ -95,44 +106,51 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int brakeAmount = gasAmount;
-                carC.brake(brakeAmount);
+                    for(Car car : cars){
+                carC.brake(brakeAmount, car);}
             }
         });
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.turboOn();
+                for(Car car : cars){
+                carC.turboOn(car);}
             }
         });
         turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.turboOff();
+                    for(Car car : cars){
+                carC.turboOff(car);}
             }
         });
         liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.liftBed();
+                for(Car car : cars){
+                carC.liftBed(car);}
             }
         });
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.lowerBed();
+                    for(Car car : cars){
+                carC.lowerBed(car);}
             }
         });
 
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.startEngine();
+                for(Car car : cars){
+                carC.startEngine(car);}
             }
         });
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.stopEngine();
+                    for(Car car : cars){
+                carC.stopEngine(car);}
             }
         });
     }

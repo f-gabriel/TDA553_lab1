@@ -163,28 +163,7 @@ public class CarController {
 
 
 
-    boolean car_at_edge(int x, int y){
-        int low_edge = 0;
-        int high_edge = 700; //CarView sätter fönstret till 800
-        boolean at_edge = (x < low_edge) || (y < low_edge);
-        at_edge = at_edge || (x > high_edge) || (y > high_edge);
-        return at_edge;
-    }
 
-    // Just nu använder funktionen obskyra nummer, som "typ råkar funka" behöver fixas sedan
-    // funktionen fungerar också endast för höger/vänster just nu och ser inte jättesnygg ut
-    void turn_at_edge(Car car){
-        car.stopEngine();
-
-        car.turnLeft();
-        car.turnLeft();
-        if(car.getX() > 700){
-            car.setPosition(699, car.getY());
-        }else{car.setPosition(1, car.getY());}
-        car.startEngine();
-        car.gas(1);
-
-    }
 
     // todo: Flytta följande till en MechanicController eller liknande
 //    // En dummy-metod i framtiden kommer den iterera över en lista av carMechanics, så som bilmetoderna fungerar
