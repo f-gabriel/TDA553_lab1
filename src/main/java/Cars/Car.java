@@ -101,6 +101,9 @@ abstract public class Car extends Engine implements Movable, HasOrientation {
         }
     };
 
+    public void moveIt(double x, double y) {
+        setPosition(x, y);
+    }
 
 }
 
