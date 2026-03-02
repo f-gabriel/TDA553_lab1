@@ -26,7 +26,7 @@ public class CarController {
 
     // The frame that represents this instance View of the MVC pattern
 //    CarView frame;
-    // A list of cars, modify if needed
+    
 
 
     // todo framtid: Denna ska inte vara här!!
@@ -163,28 +163,7 @@ public class CarController {
 
 
 
-    boolean car_at_edge(int x, int y){
-        int low_edge = 0;
-        int high_edge = 700; //CarView sätter fönstret till 800
-        boolean at_edge = (x < low_edge) || (y < low_edge);
-        at_edge = at_edge || (x > high_edge) || (y > high_edge);
-        return at_edge;
-    }
 
-    // Just nu använder funktionen obskyra nummer, som "typ råkar funka" behöver fixas sedan
-    // funktionen fungerar också endast för höger/vänster just nu och ser inte jättesnygg ut
-    void turn_at_edge(Car car){
-        car.stopEngine();
-
-        car.turnLeft();
-        car.turnLeft();
-        if(car.getX() > 700){
-            car.setPosition(699, car.getY());
-        }else{car.setPosition(1, car.getY());}
-        car.startEngine();
-        car.gas(1);
-
-    }
 
     // todo: Flytta följande till en MechanicController eller liknande
 //    // En dummy-metod i framtiden kommer den iterera över en lista av carMechanics, så som bilmetoderna fungerar
@@ -205,7 +184,48 @@ public class CarController {
 //        car.setPosition(outsideOfScreen,outsideOfScreen);
 //        volvoMechanic.load(car);
 //    }
+    private Model gameModel;
 
+    // Konstruktorn tar emot modellen så att controllern vet vem den ska prata med
+    public CarController(Model gameModel) {
+        this.gameModel = gameModel;
+    }
+
+    // 2. Alla metoder nedan gör exakt en sak: Tar emot ett kommando från Vyn (knapparna)
+    // och skickar det rakt vidare till Modellen. Ingen logik, inga loopar, inga "instanceof".
+
+    public void gas(int amount) {
+        gameModel.gas(amount);
+    }
+
+    public void brake(int amount) {
+        gameModel.brake(amount);
+    }
+
+    public void turboOn() {
+        gameModel.turboOn();
+    }
+
+    public void turboOff() {
+        gameModel.turboOff();
+    }
+
+    public void liftBed() {
+        gameModel.liftBed();
+    }
+
+    public void lowerBed() {
+        gameModel.lowerBed();
+    }
+
+    public void startEngine() {
+        gameModel.startEngine();
+    }
+
+    public void stopEngine() {
+        gameModel.stopEngine();
+    }
+}
 
 
     }

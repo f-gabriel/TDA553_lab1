@@ -7,9 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Model {
-
-
-
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with a listener (see below) that executes the statements
@@ -18,24 +15,37 @@ public class Model {
     CarController carC;
     CarView frame;
     ArrayList<HasOrientation> gameObjects = new ArrayList<>(); // låter oss lägga in alla spelobjekt i listan
-
-
-    public void Model(){
-    gameObjects.add(new Volvo240(0, 0, "east"));
-    gameObjects.add(new Saab95(0, 100, "east"));
-    gameObjects.add(new Scania(0, 200, "east"));
-
-    gameObjects.add(new VolvoMechanic(15, 300, 0, "north"));
-
-    }
+    MechanicController mechanicC = new MechanicController();
 
     public static void main(String[] args) {
         Model gm = new Model();
         // Start a new view and send a reference of self
         gm.carC = new CarController();
+
+        gm.gameObjects.add(new Volvo240(0, 0, "east"));
+        gm.gameObjects.add(new Saab95(0, 100, "east"));
+        gm.gameObjects.add(new Scania(0, 200, "east"));
+        gm.gameObjects.add(new VolvoMechanic(15, 300, 0, "north"));
+
         gm.frame = new CarView("CarSim 1.0", gm);
 
+        gm.addCars();
 
+        // Start the timer
+        gm.timer.start();
+
+
+
+
+    }
+
+    private void addCars(){
+
+        for (HasOrientation gameObject : gameObjects) {
+            if(gameObject instanceof Car car){
+                frame.addCar(car);
+            }
+        }
     }
 
     private class TimerListener implements ActionListener {
@@ -56,14 +66,13 @@ public class Model {
                     carC.move(car);
                     int x = (int) Math.round(gameObject.getX());
                     int y = (int) Math.round(gameObject.getY());
+                    frame.draw(car, x, y);
 
                 }
 
 
-
-                // Start the timer
-                timer.start();
                 // todo: skapa uppdatering
+
             }
         }
     }
@@ -91,7 +100,73 @@ public class Model {
 
     }
 
+    public void gas(int amount) {
+        double gas = ((double) amount) / 100.0;
+        for (HasOrientation obj : gameObjects) {
+            if (obj instanceof Car car) {
+                car.gas(gas);
+            }
+        }
+    }
 
+    public void brake(int amount) {
+        double brake = ((double) amount) / 100.0;
+        for (HasOrientation obj : gameObjects) {
+            if (obj instanceof Car car) {
+                car.brake(brake);
+            }
+        }
+    }
+
+    public void startEngine() {
+        for (HasOrientation obj : gameObjects) {
+            if (obj instanceof Car car) {
+                car.startEngine();
+            }
+        }
+    }
+
+    public void stopEngine() {
+        for (HasOrientation obj : gameObjects) {
+            if (obj instanceof Car car) {
+                car.stopEngine();
+            }
+        }
+    }
+    public void turboOn() {
+        for (HasOrientation obj : gameObjects) {
+            // Använder ditt interface för att följa OCP!
+            if (obj instanceof TurboChargable turboCar) {
+                turboCar.setTurboOn();
+            }
+        }
+    }
+
+    public void turboOff() {
+        for (HasOrientation obj : gameObjects) {
+            if (obj instanceof TurboChargable turboCar) {
+                turboCar.setTurboOff();
+            }
+        }
+    }
+
+    public void liftBed() {
+        for (HasOrientation obj : gameObjects) {
+            // Jag ser att ni har ett TruckBed-interface i UML:et och koden
+            // Vi använder det här för att slippa kolla specifikt efter Scania!
+            if (obj instanceof TruckBed truckWithBed) {
+                truckWithBed.raise();
+            }
+        }
+    }
+
+    public void lowerBed() {
+        for (HasOrientation obj : gameObjects) {
+            if (obj instanceof TruckBed truckWithBed) {
+                truckWithBed.lower();
+            }
+        }
+    }
 
 }
 
