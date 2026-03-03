@@ -100,72 +100,7 @@ public class Model {
 
     }
 
-    public void gas(int amount) {
-        double gas = ((double) amount) / 100.0;
-        for (HasOrientation obj : gameObjects) {
-            if (obj instanceof Car car) {
-                car.gas(gas);
-            }
-        }
-    }
 
-    public void brake(int amount) {
-        double brake = ((double) amount) / 100.0;
-        for (HasOrientation obj : gameObjects) {
-            if (obj instanceof Car car) {
-                car.brake(brake);
-            }
-        }
-    }
-
-    public void startEngine() {
-        for (HasOrientation obj : gameObjects) {
-            if (obj instanceof Car car) {
-                car.startEngine();
-            }
-        }
-    }
-
-    public void stopEngine() {
-        for (HasOrientation obj : gameObjects) {
-            if (obj instanceof Car car) {
-                car.stopEngine();
-            }
-        }
-    }
-    public void turboOn() {
-        for (HasOrientation obj : gameObjects) {
-            // Använder ditt interface för att följa OCP!
-            if (obj instanceof TurboChargable turboCar) {
-                turboCar.setTurboOn();
-            }
-        }
-    }
-
-    public void turboOff() {
-        for (HasOrientation obj : gameObjects) {
-            if (obj instanceof TurboChargable turboCar) {
-                turboCar.setTurboOff();
-            }
-        }
-    }
-
-    public void liftBed() {
-        for (HasOrientation obj : gameObjects) {
-            // Jag ser att ni har ett TruckBed-interface i UML:et och koden
-            // Vi använder det här för att slippa kolla specifikt efter Scania!
-            if (obj instanceof TruckBed truckWithBed) {
-                truckWithBed.raise();
-            }
-        }
-    }
-
-    public void lowerBed() {
-        for (HasOrientation obj : gameObjects) {
-            if (obj instanceof TruckBed truckWithBed) {
-                truckWithBed.lower();
-            }
-        }
     }
 
 }
