@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import Cars.*;
+import GameObjects.GameObjects;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -9,19 +10,23 @@ import Cars.*;
  * each of it's components.
  **/
 
-public class CarView {
-
+public class CarView implements ModelListener{
     private static final int FrameSizeX = 800;
     private static final int FrameSizeY = 800;
 
     private final JFrame frame;
     private final Model gameModel;
+    private final GameObjects gameObjects;
 
     private final DrawPanel drawPanel = new DrawPanel(FrameSizeX, FrameSizeY - 240);
     private static final ControlPanel controlPanel = new ControlPanel();
 
-    public CarView(String frameName, Model gameModel) {
+    public CarView(String frameName, Model gameModel, GameObjects gameObjects) {
         this.gameModel = gameModel;
+        this.gameModel.addListener(this);
+
+        this.gameObjects = gameObjects;
+
         frame = new JFrame();
         initComponents(frameName);
     }
@@ -42,15 +47,22 @@ public class CarView {
     }
 
     public void addCar(Car car) {
-        controlPanel.addCar(car);
+        controlPanel.addCar(car); // Har jag lagt denna här / Fredrik
     }
 
-    public void draw(Car car, double x, double y) {
-        drawPanel.moveIt(car, x, y);
-        drawPanel.getPanel().repaint();
-    }
+    public void draw() {
+        //drawPanel.moveIt(car, x, y);
+        for(HasOrientation gameObject: gameObjects.getGameObjects()){
+            drawPanel.getPanel().repaint();
+        }
 
+    }
     public JFrame getFrame() {
         return frame;
+    }
+
+    @Override
+    public void actOnModelUpdate() {
+        draw();
     }
 }

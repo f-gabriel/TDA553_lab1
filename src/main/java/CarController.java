@@ -1,4 +1,5 @@
 import Cars.*;
+import GameObjects.GameObjects;
 import Mechanic.VolvoMechanic;
 
 import javax.swing.*;
@@ -15,96 +16,93 @@ import java.util.ArrayList;
 // todo: se gas() / brake()
 // todo framtid: förslag: CarController är enda klassen som interagerar direkt med bilarna.
 //  den ska inte instansiera en CarView
-public class CarController {
+public class CarController implements ModelListener{
+    private GameObjects  gameObjects;
+    private Model gameModel;
+    ControlPanel controlPanel;
 
-
+    // Konstruktorn tar emot modellen så att controllern vet vem den ska prata med
+    public CarController(Model gameModel, GameObjects gameObjects) {
+        this.gameModel = gameModel;
+        this.gameObjects = gameObjects;
+    }
 
     // Calls the gas method for each car once
-    void gas(int amount, Car car) {
-        double gas = ((double) amount) / 100; // behöver vara 1 eller 0. Kan också omimplementera funktionerna i Cars.Car
+    void gas(int amount) {
+        double gas = ((double) amount); // behöver vara 1 eller 0. Kan också omimplementera funktionerna i Cars.Car
         gas = amount;
         if (amount != 0) {gas = 1;}
-        //for (Car car : cars) {
+        for (Car car : gameObjects.getCarObjects()) {
             car.gas(gas);
-        //}
+        }
     }
-    void brake(int amount, Car car) {
+    void brake(int amount) {
         double brake = ((double) amount) / 100; // se gas()
         brake = amount;
         if (amount != 0) {brake = 1;}
-        //for (Car car : cars) {
+        for (Car car : gameObjects.getCarObjects()) {
             car.brake(brake);
-        //}
+        }
     }
-    void turboOn(Car car) {
-        //for (Car car : cars) {
+    void turboOn() {
+        for (Car car : gameObjects.getCarObjects()) {
             if (car instanceof TurboChargable) {
                 ((Saab95) car).setTurboOn();
             }
-        //}
+        }
     }
-    void turboOff(Car car) {
-        //for (Car car : cars) {
+    void turboOff() {
+        for (Car car : gameObjects.getCarObjects()) {
             if (car instanceof TurboChargable) {
                 ((Saab95) car).setTurboOff();
             }
-        //}
+        }
     }
-    void liftBed(Car car) {
-        //for (Car car : cars) {
+    void liftBed() {
+        for (Car car : gameObjects.getCarObjects()) {
             if (car instanceof Truck) {
                 if (car.getCurrentSpeed() == 0) { //
                     ((Scania) car).raise();
                     }
                 }
-            //}
+            }
         }
-    void lowerBed(Car car) {
-        //for (Car car : cars) {
+    void lowerBed() {
+        for (Car car : gameObjects.getCarObjects()) {
         if (car instanceof  Scania){
         if (car.getCurrentSpeed() == 0) {
         ((Scania) car).lower();
                 }
             }
-        //}
-    }
-    void startEngine(Car car){
-        //for (Car car : cars) {
-            car.startEngine();
-            //}
         }
-    void stopEngine(Car car){
-        //for (Car car : cars) {
+    }
+    void startEngine(){
+        for (Car car : gameObjects.getCarObjects()) {
+            car.startEngine();
+            }
+        }
+    void stopEngine(){
+        for (Car car : gameObjects.getCarObjects()) {
             car.stopEngine();
-        //}
+        }
     }
 
-    // skapade för lab 4
-    void move(Car car) {
+
+    public Saab95 createSaab95(double x, double y, String direction) {
+        return new Saab95(x,y,direction);
+    }
+    public Volvo240 createVolvo240(double x, double y, String direction) {
+        return new Volvo240(x,y,direction);
+    }
+    public Scania createScania(double x, double y, String direction) {
+        return new Scania(x,y,direction);
+    }
+
+    @Override
+    public void actOnModelUpdate() {
+        for (Car car : gameObjects.getCarObjects()) {
             car.move();
-    }
-    void turnLeft(Car car) {
-        car.turnLeft();
-    }
-    void turnRight(Car car) {
-        car.turnRight();
-    }
-    double getX(Car car) {
-        return car.getX();
-    }
-    double getY(Car car) {
-        return car.getY();
-    }
-    void setPosition(double x, double y, Car car) {
-        car.setPosition(x, y);
-    }
-
-
-    private Model gameModel;
-
-    // Konstruktorn tar emot modellen så att controllern vet vem den ska prata med
-    public CarController(Model gameModel) {
-        this.gameModel = gameModel;
+        }
     }
 
     // 2. Alla metoder nedan gör exakt en sak: Tar emot ett kommando från Vyn (knapparna)

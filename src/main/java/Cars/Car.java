@@ -26,6 +26,7 @@ abstract public class Car extends Engine implements Movable, HasOrientation {
     public void setPosition(double x, double y){orientation.setPosition(x,y);}
     public void addToCoordinate(char coordinate, double amount){orientation.addToCoordinate(coordinate, amount);}
     public String getCurrentDirectionAsString(){return orientation.getCurrentDirectionAsString();}
+    public void setCurrentDirection(Orientation.Directions direction){orientation.setCurrentDirection(direction);}
 
     // övriga get-/set-funktioner
     public int getNrDoors(){return nrDoors;}

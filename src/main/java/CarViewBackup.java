@@ -1,0 +1,65 @@
+import javax.swing.*;
+import java.awt.*;
+import Cars.*;
+
+/**
+ * This class represents the full view of the MVC pattern of your car simulator.
+ * It initializes with being center on the screen and attaching it's controller in it's state.
+ * It communicates with the Controller by calling methods of it when an action fires of in
+ * each of it's components.
+ **/
+
+
+public class CarViewBackup extends JFrame{
+    private static final int FrameSizeX = 800;  //finns nu också i UserInput
+    private static final int FrameSizeY = 800;  //finns nu också i UserInput
+
+    JFrame frame;
+    // The controller member
+    Model gameModel;
+
+    DrawPanel drawPanel = new DrawPanel(FrameSizeX, FrameSizeY -240);
+
+    static ControlPanel controlPanel = new ControlPanel();  //finns nu också i UserInput
+
+
+    // todo ändra tillbaka till CarView
+    public CarViewBackup(String framename, Model gameModel){
+        this.gameModel = gameModel;
+        initComponents(framename);
+    }
+
+    // Sets everything in place and fits everything
+
+    private void initComponents(String title) {
+
+        this.setTitle(title);
+        this.setPreferredSize(new Dimension(FrameSizeX, FrameSizeY));
+        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+
+        //this.add(drawPanel);   // todo avkommentera
+        this.add(controlPanel);
+
+
+
+        // Make the frame pack all it's components by respecting the sizes if possible.
+        this.pack();
+
+        // Get the computer screen resolution
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        // Center the frame
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        // Make the frame visible
+        this.setVisible(true);
+        // Make sure the frame exits when "x" is pressed
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void addCar(Car car){
+        controlPanel.addCar(car);
+    }
+
+    public void draw(Car car, double x, double y){
+        //drawPanel.moveIt(car, x, y);   // todo avkommentera
+        //drawPanel.repaint();    // todo avkommentera
+    }
+}

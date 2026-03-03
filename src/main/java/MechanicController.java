@@ -32,4 +32,8 @@ public class MechanicController {
     // Anropas när användaren klickar på "Unload Volvo Mechanic" i vyn
     public void unloadMechanic() {
     }
+
+    public static VolvoMechanic createVolvoMechanic(int cargo, int x, int y, String direction) {
+        return new VolvoMechanic(cargo, x, y, direction);
+    }
 }
