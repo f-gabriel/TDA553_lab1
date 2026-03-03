@@ -9,57 +9,48 @@ import Cars.*;
  * each of it's components.
  **/
 
+public class CarView {
 
-public class CarView extends JFrame{
-    private static final int FrameSizeX = 800;  //finns nu också i UserInput
-    private static final int FrameSizeY = 800;  //finns nu också i UserInput
+    private static final int FrameSizeX = 800;
+    private static final int FrameSizeY = 800;
 
-    JFrame framwe;
-    // The controller member
-    Model gameModel;
+    private final JFrame frame;
+    private final Model gameModel;
 
-    DrawPanel drawPanel = new DrawPanel(FrameSizeX, FrameSizeY -240);
+    private final DrawPanel drawPanel = new DrawPanel(FrameSizeX, FrameSizeY - 240);
+    private static final ControlPanel controlPanel = new ControlPanel();
 
-    static ControlPanel controlPanel = new ControlPanel();  //finns nu också i UserInput
-
-
-    // Constructor
-    public CarView(String framename, Model gameModel){
+    public CarView(String frameName, Model gameModel) {
         this.gameModel = gameModel;
-        initComponents(framename);
+        frame = new JFrame();
+        initComponents(frameName);
     }
-
-    // Sets everything in place and fits everything
 
     private void initComponents(String title) {
+        frame.setTitle(title);
+        frame.setPreferredSize(new Dimension(FrameSizeX, FrameSizeY));
+        frame.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        frame.add(drawPanel.getPanel());
+        frame.add(controlPanel);
+        frame.pack();
 
-        this.setTitle(title);
-        this.setPreferredSize(new Dimension(FrameSizeX, FrameSizeY));
-        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
-        this.add(drawPanel);
-        this.add(controlPanel);
-
-
-
-        // Make the frame pack all it's components by respecting the sizes if possible.
-        this.pack();
-
-        // Get the computer screen resolution
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        // Center the frame
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        // Make the frame visible
-        this.setVisible(true);
-        // Make sure the frame exits when "x" is pressed
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocation(dim.width/2 - frame.getSize().width/2, dim.height/2 - frame.getSize().height/2);
+
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    public void addCar(Car car){
+
+    public void addCar(Car car) {
         controlPanel.addCar(car);
     }
 
-    public void draw(Car car, double x, double y){
+    public void draw(Car car, double x, double y) {
         drawPanel.moveIt(car, x, y);
-        drawPanel.repaint();
+        drawPanel.getPanel().repaint();
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }
