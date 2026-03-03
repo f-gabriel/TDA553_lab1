@@ -16,68 +16,7 @@ import java.util.ArrayList;
 // todo framtid: förslag: CarController är enda klassen som interagerar direkt med bilarna.
 //  den ska inte instansiera en CarView
 public class CarController {
-    // member fields:
 
-//    // The delay (ms) corresponds to 20 updates a sec (hz)
-//    private final int delay = 50;
-//    // The timer is started with a listener (see below) that executes the statements
-//    // each step between delays.
-//    private final Timer timer = new Timer(delay, new TimerListener());
-
-    // The frame that represents this instance View of the MVC pattern
-//    CarView frame;
-    
-
-
-    // todo framtid: Denna ska inte vara här!!
-
-    //methods:
-
-    public static void main(String[] args) {
-
-        // Start a new view and send a reference of self
-        //cc.frame = new CarView("CarSim 1.0", cc);
-
-
-    }
-
-    /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
-
-
-//    private class TimerListener implements ActionListener {
-//        public void actionPerformed(ActionEvent e) {
-//              for (Car car : cars) {
-//                  // Detta är helt fukt. Om ni har en bättre idé får ni gärna göra ändringar
-//                  // Vi behöver veta om bilen passerar carMechanic eftersom den så som det ser ut kan "hoppa över" den
-//                  // vi behöver alltså position innan och efter move
-//                  int oldX = (int) Math.round(car.getX());
-//                  int oldY = (int) Math.round(car.getY());
-//
-//                  // todo notera: en brute-force lösning ska inte vara såhär i framtiden. Inkluderar alla hjälpmetoder
-//                  //  metoden är här just nu för att det är här vi uppdaterar frame:t
-//                  if(car_at_edge(oldX, oldY)){
-//                      turn_at_edge(car);
-//                  }
-//                  car.move();
-//                  int x = (int) Math.round(car.getX());
-//                  int y = (int) Math.round(car.getY());
-//
-//                  if (car_at_mechanic(oldX, oldY, x, y)){
-//                      if (car instanceof Volvo240) {
-//                          carMechanicLoad((Volvo240) car);
-//                          x = (int) Math.round(car.getX());
-//                          y = (int) Math.round(car.getY());
-//                      }
-//                  }
-//
-//                frame.drawPanel.moveIt(car, x, y);
-//                // repaint() calls the paintComponent method of the panel
-//                frame.drawPanel.repaint();
-//            }
-//        }
-//    }
 
 
     // Calls the gas method for each car once
@@ -161,29 +100,6 @@ public class CarController {
     }
 
 
-
-
-
-
-    // todo: Flytta följande till en MechanicController eller liknande
-//    // En dummy-metod i framtiden kommer den iterera över en lista av carMechanics, så som bilmetoderna fungerar
-//    boolean car_at_mechanic(int oldX, int oldY, int x, int y){
-//        int mechanicX = (int) Math.round(volvoMechanic.getX());
-//        int mechanicY = (int) Math.round(volvoMechanic.getY());
-//        boolean atMechanic;
-//
-//        atMechanic = x == mechanicX;
-//        atMechanic = atMechanic || (oldX < mechanicX && mechanicX < x) && y == mechanicY; // om oldX < mechX < x -> bilen har passerat
-//        atMechanic = atMechanic || (oldX > mechanicX && mechanicX > x) && y == mechanicY; // 'atMechanic ||' ser till att den fortsätter vara True
-//        atMechanic = atMechanic || (oldY < mechanicY && mechanicY < y) && x == mechanicX; // 'x == mechanicX' kollar att de ligger på samma linje
-//        atMechanic = atMechanic || (oldY > mechanicY && mechanicY > y) && x == mechanicX;
-//        return atMechanic;
-//    }
-//    void carMechanicLoad(Volvo240 car){
-//        double outsideOfScreen = 801;
-//        car.setPosition(outsideOfScreen,outsideOfScreen);
-//        volvoMechanic.load(car);
-//    }
     private Model gameModel;
 
     // Konstruktorn tar emot modellen så att controllern vet vem den ska prata med
@@ -228,7 +144,7 @@ public class CarController {
 }
 
 
-    }
+
 
 
 

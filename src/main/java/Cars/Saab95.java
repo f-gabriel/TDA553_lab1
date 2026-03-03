@@ -15,6 +15,7 @@ public class Saab95 extends PersonalVehicle implements TurboChargable {
         super(125, 2,Color.red, "Cars.Saab95", x, y, direction);
         turboOn = false;
     }
+
     public Saab95(Color color, double x, double y, String direction){
         super(125, 2, color, "Cars.Saab95", x, y, direction);
         turboOn = false;
