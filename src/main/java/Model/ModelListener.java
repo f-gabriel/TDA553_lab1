@@ -1,3 +1,5 @@
+package Model;
+
 import Cars.Car;
 import Mechanic.CarMechanic;
 

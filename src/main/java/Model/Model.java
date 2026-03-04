@@ -1,3 +1,5 @@
+package Model;
+
 import Cars.*;
 import GameObjects.GameObjects;
 
@@ -35,7 +37,7 @@ public class Model {
                 }
                 int x = (int) Math.round(car.getX()); // todo ta bort
                 int y = (int) Math.round(car.getY());
-                System.out.println(x+ ","+y);
+                //System.out.println(x+ ","+y);
 
                 notifyListeners();
 

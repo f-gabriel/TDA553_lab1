@@ -1,8 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import Cars.*;
+import Controller.ControlPanel;
 import GameObjects.GameObjects;
 import Mechanic.CarMechanic;
+import Model.Model;
+import Model.ModelListener;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -11,7 +14,7 @@ import Mechanic.CarMechanic;
  * each of it's components.
  **/
 
-public class CarView implements ModelListener{
+public class CarView implements ModelListener {
     private static final int FrameSizeX = 800;
     private static final int FrameSizeY = 800;
 
@@ -67,6 +70,12 @@ public class CarView implements ModelListener{
 
     @Override
     public void actOnModelUpdate() {
+        if(gameObjects.getGameObjects().size() != drawPanel.getDrawables().size()){
+            for(HasOrientation gameObject: gameObjects.getGameObjects()){
+                DrawObject drawable = drawPanel.createDrawObject(gameObject);
+                drawPanel.addDrawable(drawable);
+            }
+        }
         draw();
     }
 

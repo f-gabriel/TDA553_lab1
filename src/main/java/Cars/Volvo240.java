@@ -4,9 +4,13 @@ import java.awt.*;
 
 public class Volvo240 extends PersonalVehicle{
     static double trimFactor = 1.25;
-    public static Car CreateVolvo240(){
+    public static Volvo240 CreateVolvo240(){
         return new Volvo240();
     }
+    public static Volvo240 CreateVolvo240(double x, double y, String direction){
+        return new Volvo240(x,y,direction);
+    }
+
     private Volvo240(){
         super(100, 4, Color.black, "Cars.Volvo240",0, 0, "north");
     }

@@ -1,3 +1,5 @@
+package Controller;
+
 import Cars.Car;
 import Cars.Saab95;
 import Cars.Scania;
@@ -5,8 +7,8 @@ import Cars.Volvo240;
 import GameObjects.GameObjects;
 import Mechanic.CarMechanic;
 import Mechanic.VolvoMechanic;
-
-import java.awt.event.ActionListener;
+import Model.Model;
+import Model.ModelListener;
 
 public class SimulationController implements ModelListener, ControllPanelListener{
     private final CarController carC;
@@ -16,7 +18,7 @@ public class SimulationController implements ModelListener, ControllPanelListene
 
     private GameObjects gameObjects;
 
-    SimulationController(Model model, GameObjects gameObjects, ControlPanel controlP) {
+    public SimulationController(Model model, GameObjects gameObjects, ControlPanel controlP) {
         this.carC = new CarController(gameObjects);
         this.mechC = new MechanicController(gameObjects);
         this.model = model;
@@ -52,7 +54,9 @@ public class SimulationController implements ModelListener, ControllPanelListene
 
     @Override
     public void actOnModelUpdate() {
-        carC.move();
+        for(Car car : gameObjects.getCarObjects()) {
+            carC.move(car);
+        }
     }
 
     @Override
@@ -67,41 +71,49 @@ public class SimulationController implements ModelListener, ControllPanelListene
 
     @Override
     public void actOnGasButton(int gasAmount) {
-        carC.gas(gasAmount);
+        for(Car car : gameObjects.getCarObjects()) {
+        carC.gas(gasAmount, car);}
     }
 
     @Override
     public void actOnBrakeButton(int brakeAmount) {
-        carC.brake(brakeAmount);
+        for(Car car : gameObjects.getCarObjects()) {
+        carC.brake(brakeAmount, car);}
     }
 
     @Override
     public void actOnTurboOnButton() {
-        carC.turboOn();
+        for(Car car : gameObjects.getCarObjects()) {
+        carC.turboOn(car);}
     }
 
     @Override
     public void actOnTurboOffButton() {
-        carC.turboOff();
+        for(Car car : gameObjects.getCarObjects()) {
+        carC.turboOff(car);}
     }
 
     @Override
     public void actOnLiftBedButton() {
-        carC.liftBed();
+        for(Car car : gameObjects.getCarObjects()) {
+        carC.liftBed(car);}
     }
 
     @Override
     public void actOnLowerBedButton() {
-        carC.lowerBed();
+        for(Car car : gameObjects.getCarObjects()) {
+        carC.lowerBed(car);}
     }
 
     @Override
     public void actOnStartButton() {
-        carC.startEngine();
+        for(Car car : gameObjects.getCarObjects()) {
+        carC.startEngine(car);}
     }
 
     @Override
     public void actOnStopButton() {
-        carC.stopEngine();
+        for(Car car : gameObjects.getCarObjects()) {
+        carC.stopEngine(car);}
     }
 }

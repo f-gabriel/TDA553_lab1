@@ -1,3 +1,6 @@
+import Cars.HasOrientation;
+import Cars.Volvo240;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -39,4 +42,7 @@ public class DrawPanel {
             drawable.draw(g);
         }
     }
-}
+    public DrawObject createDrawObject(HasOrientation model){   // law of Demeter
+        return DrawObject.createDrawObject(model);}
+
+    }

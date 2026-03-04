@@ -1,9 +1,12 @@
-import Cars.Car;
 import Cars.Saab95;
 import Cars.Scania;
 import Cars.Volvo240;
+import Controller.ControlPanel;
+import Controller.SimulationController;
 import GameObjects.GameObjects;
 import Mechanic.VolvoMechanic;
+import Model.Model;
+import Controller.SimulationController;
 
 public class Main {
 

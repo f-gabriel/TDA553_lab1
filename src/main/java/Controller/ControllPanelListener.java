@@ -1,6 +1,4 @@
-import Cars.Car;
-
-import java.awt.event.ActionEvent;
+package Controller;
 
 public interface ControllPanelListener {
     void actOnGasButton(int gasAmount);

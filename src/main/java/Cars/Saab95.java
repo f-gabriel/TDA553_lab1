@@ -4,13 +4,18 @@ import java.awt.*;
 
 public class Saab95 extends PersonalVehicle implements TurboChargable {
     boolean turboOn;
-    public static Car CreateSaab95(){
+
+    public static Saab95 CreateSaab95(){
         return new Saab95();
     }
+    public static Saab95 CreateSaab95(double x, double y, String direction){
+        return new Saab95(x,y,direction);
+    }
+
     private Saab95(){
         double power = 125;
         super(power, 2, Color.red, "Cars.Saab95", 0, 0, "north");
-	    turboOn = false;
+        turboOn = false;
     }
 
     private Saab95(double x, double y, String direction){
@@ -24,10 +29,10 @@ public class Saab95 extends PersonalVehicle implements TurboChargable {
     }
 
     public void setTurboOn(){
-	    turboOn = true;
+        turboOn = true;
     }
     public void setTurboOff(){
-	    turboOn = false;
+        turboOn = false;
     }
     protected double speedFactor(){
         double turbo = 1;

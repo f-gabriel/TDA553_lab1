@@ -6,8 +6,11 @@ public class Scania extends Truck {
 
     private double bedHelperDegree;
 
-    public static Car CreateScania(){
+    public static Scania CreateScania(){
         return new Scania();
+    }
+    public static Scania CreateScania(double x, double y, String direction){
+        return new Scania(x,y,direction);
     }
 
     private Scania() {
@@ -26,8 +29,10 @@ public class Scania extends Truck {
     }
 
     public void lower() {
+        System.out.println(((int)getCurrentSpeed()));
         if ((int)getCurrentSpeed() == 0) {
             bedHelperDegree = Math.max(bedHelperDegree - 10, 0);
+            System.out.println(bedHelperDegree);
         }
     }
 

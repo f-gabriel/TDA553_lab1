@@ -1,4 +1,4 @@
-import Cars.Car;
+package Controller;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -26,8 +26,8 @@ public class ControlPanel extends JPanel {
     JButton brakeButton = new JButton("Brake");
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
-    JButton liftBedButton = new JButton("Cars.Scania Lift Bed");
-    JButton lowerBedButton = new JButton("Lower Lift Bed");
+    JButton liftBedButton = new JButton("Lift Bed");
+    JButton lowerBedButton = new JButton("Lower Bed");
 
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
@@ -142,6 +142,7 @@ public class ControlPanel extends JPanel {
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("in lower bed button");
                 for(ControllPanelListener l : listeners){
                     l.actOnLowerBedButton();
                 }

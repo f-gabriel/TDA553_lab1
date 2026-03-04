@@ -1,8 +1,9 @@
-import Cars.Car;
+package Controller;
+
 import Cars.Volvo240;
 import GameObjects.GameObjects;
-import Loader.Loader;
 import Mechanic.VolvoMechanic;
+import Model.Model;
 
 
 public class MechanicController {
@@ -13,7 +14,7 @@ public class MechanicController {
     }
 
     public static VolvoMechanic createVolvoMechanic(int cargo, int x, int y, String direction) {
-        return new VolvoMechanic(cargo, x, y, direction);
+        return VolvoMechanic.CreateVolvoMechanic(cargo, x, y, direction);
     }
     boolean car_at_mechanic(VolvoMechanic mechanic, int oldX, int oldY, int x, int y) {
         int mechanicX = (int) Math.round(mechanic.getX());
