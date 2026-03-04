@@ -54,9 +54,9 @@ public class CarViewBackup extends JFrame{
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    public void addCar(Car car){
-        controlPanel.addCar(car);
-    }
+//    public void addCar(Car car){
+//        controlPanel.addCar(car);
+//    }
 
     public void draw(Car car, double x, double y){
         //drawPanel.moveIt(car, x, y);   // todo avkommentera

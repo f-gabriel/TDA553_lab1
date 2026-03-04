@@ -1,6 +1,5 @@
 import Cars.*;
 import GameObjects.GameObjects;
-import Mechanic.VolvoMechanic;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +18,7 @@ public class Model {
     private GameObjects gameObjects;
 
 
-    public void Model(GameObjects gameObjects) {
+    public Model(GameObjects gameObjects) {
         this.gameObjects = gameObjects;
     }
 
@@ -27,24 +26,16 @@ public class Model {
         public void actionPerformed(ActionEvent e) {
             for (Car car : gameObjects.getCarObjects()) {
 
-                    // Detta är helt fukt. Om ni har en bättre idé får ni gärna göra ändringar
-                    // Vi behöver veta om bilen passerar carMechanic eftersom den så som det ser ut kan "hoppa över" den
-                    // vi behöver alltså position innan och efter move
-                    int oldX = (int) Math.round(car.getX());
-                    int oldY = (int) Math.round(car.getY());
-
-                    // todo notera: en brute-force lösning ska inte vara såhär i framtiden. Inkluderar alla hjälpmetoder
-                    //  metoden är här just nu för att det är här vi uppdaterar frame:t
-                    if(car_at_edge(oldX, oldY)){
-                        turn_at_edge(car);
+                if(car_at_edge(car)){
+                        notifyAtEdge(car);
 
 
-                    int x = (int) Math.round(car.getX());
-                    int y = (int) Math.round(car.getY());
 
 
                 }
-
+                int x = (int) Math.round(car.getX()); // todo ta bort
+                int y = (int) Math.round(car.getY());
+                System.out.println(x+ ","+y);
 
                 notifyListeners();
 
@@ -53,7 +44,7 @@ public class Model {
     }
     public void startSimulation() {
         // Start the timer
-        timer.start();
+        this.timer.start();
     }
 
     public void addListener(ModelListener l){
@@ -66,26 +57,41 @@ public class Model {
         }
     }
 
-    boolean car_at_edge(int x, int y){
+    boolean car_at_edge(Car car){
         int low_edge = 0;
         int high_edge = 700; //CarView sätter fönstret till 800
-        boolean at_edge = (x < low_edge) || (y < low_edge);
-        at_edge = at_edge || (x > high_edge) || (y > high_edge);
+        int carX = (int) Math.round(car.getX());
+        int carY = (int) Math.round(car.getY());
+        int carSpeed = (int) Math.round(car.getCurrentSpeed());
+        boolean at_edge = (carX + carSpeed < low_edge) || (carY + carSpeed < low_edge);
+        at_edge = at_edge || (carX + carSpeed > high_edge) || (carY + carSpeed > high_edge);
         return at_edge;
+
+
+//        int low_edge = 0;
+//        int high_edge = 700; //CarView sätter fönstret till 800
+//        boolean at_edge = (x < low_edge) || (y < low_edge);
+//        at_edge = at_edge || (x > high_edge) || (y > high_edge);
+//        return at_edge;
     }
 
     // Just nu använder funktionen obskyra nummer, som "typ råkar funka" behöver fixas sedan
     // funktionen fungerar också endast för höger/vänster just nu och ser inte jättesnygg ut
-    void turn_at_edge(Car car){
-        car.stopEngine();
+    void notifyAtEdge(Car car){
+        for(ModelListener l : listeners){
+            l.actOnAtEndOfScreen(car);
+        }
 
-        car.turnLeft();
-        car.turnLeft();
-        if(car.getX() > 700){
-            car.setPosition(699, car.getY());
-        }else{car.setPosition(1, car.getY());}
-        car.startEngine();
-        car.gas(1);
+
+//        car.stopEngine();
+//
+//        car.turnLeft();
+//        car.turnLeft();
+//        if(car.getX() > 700){
+//            car.setPosition(699, car.getY());
+//        }else{car.setPosition(1, car.getY());}
+//        car.startEngine();
+//        car.gas(1);
 
     }
 

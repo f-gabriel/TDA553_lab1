@@ -39,17 +39,17 @@ public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVe
             PersonalVehicle car = loader.unLoad();
 
             switch (orientation.currentDirection) {
-                case Orientation.Directions.NORTH:
-                    car.addToCoordinate('y', -1);
+                case DIRECTIONS.NORTH:
+                    car.addToCoordinate(currentSpeed);
                     break;
-                case Orientation.Directions.WEST:
-                    car.addToCoordinate('x', 1);
+                case DIRECTIONS.WEST:
+                    car.addToCoordinate(currentSpeed);
                     break;
-                case Orientation.Directions.SOUTH:
-                    car.addToCoordinate('y', 1);
+                case DIRECTIONS.SOUTH:
+                    car.addToCoordinate(currentSpeed);
                     break;
-                case Orientation.Directions.EAST: // Skulle kunna skrivas som default istället
-                    car.addToCoordinate('x', -1);
+                case DIRECTIONS.EAST: // Skulle kunna skrivas som default istället
+                    car.addToCoordinate(currentSpeed);
                     break;
             }
             return car;

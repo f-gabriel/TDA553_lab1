@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import Cars.*;
 import GameObjects.GameObjects;
+import Mechanic.CarMechanic;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -19,11 +20,14 @@ public class CarView implements ModelListener{
     private final GameObjects gameObjects;
 
     private final DrawPanel drawPanel = new DrawPanel(FrameSizeX, FrameSizeY - 240);
-    private static final ControlPanel controlPanel = new ControlPanel();
+    private final ControlPanel controlPanel;
 
-    public CarView(String frameName, Model gameModel, GameObjects gameObjects) {
+
+
+    public CarView(String frameName, Model gameModel, GameObjects gameObjects, ControlPanel controlPanel) {
         this.gameModel = gameModel;
         this.gameModel.addListener(this);
+        this.controlPanel = controlPanel;
 
         this.gameObjects = gameObjects;
 
@@ -46,9 +50,9 @@ public class CarView implements ModelListener{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void addCar(Car car) {
-        controlPanel.addCar(car); // Har jag lagt denna här / Fredrik
-    }
+//    public void addCar(Car car) {
+//        controlPanel.addCar(car); // Har jag lagt denna här? / Fredrik
+//    }
 
     public void draw() {
         //drawPanel.moveIt(car, x, y);
@@ -64,5 +68,15 @@ public class CarView implements ModelListener{
     @Override
     public void actOnModelUpdate() {
         draw();
+    }
+
+    @Override
+    public void actOnAtMechanic(Car car, CarMechanic carMechanic) {
+
+    }
+
+    @Override
+    public void actOnAtEndOfScreen(Car car) {
+
     }
 }

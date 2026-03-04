@@ -15,10 +15,10 @@ class Saab95Test {
     @BeforeEach
     void setUp() {
         saab.stopEngine(); // återställer currentSpeed
-        saab.orientation.setCurrentDirection(Orientation.Directions.NORTH); // återställer currentDirection
+        saab.orientation.setCurrentDirection(DIRECTIONS.NORTH); // återställer currentDirection
         saab.orientation.setPosition(0,0); // återställer position
         volvo.stopEngine(); // återställer currentSpeed
-        volvo.orientation.setCurrentDirection(Orientation.Directions.NORTH); // återställer currentDirection
+        volvo.orientation.setCurrentDirection(DIRECTIONS.NORTH); // återställer currentDirection
         volvo.orientation.setPosition(0,0); // återställer position
     }
 //    @AfterEach
@@ -206,70 +206,70 @@ class Saab95Test {
 
     @Test
     void CheckTurnLeft() {
-        var newDirection = Orientation.Directions.WEST;
+        var newDirection = DIRECTIONS.WEST;
         saab.turnLeft();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.SOUTH;
+        newDirection = DIRECTIONS.SOUTH;
         saab.turnLeft();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.EAST;
+        newDirection = DIRECTIONS.EAST;
         saab.turnLeft();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.NORTH;
+        newDirection = DIRECTIONS.NORTH;
         saab.turnLeft();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.WEST;
+        newDirection = DIRECTIONS.WEST;
         volvo.turnLeft();
         assertEquals(newDirection, volvo.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.SOUTH;
+        newDirection = DIRECTIONS.SOUTH;
         volvo.turnLeft();
         assertEquals(newDirection, volvo.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.EAST;
+        newDirection = DIRECTIONS.EAST;
         volvo.turnLeft();
         assertEquals(newDirection, volvo.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.NORTH;
+        newDirection = DIRECTIONS.NORTH;
         volvo.turnLeft();
         assertEquals(newDirection, volvo.orientation.getCurrentDirection());
     }
 
     @Test
     void CheckTurnRight() {
-        var newDirection = Orientation.Directions.EAST;
+        var newDirection = DIRECTIONS.EAST;
         saab.turnRight();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.SOUTH;
+        newDirection = DIRECTIONS.SOUTH;
         saab.turnRight();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.WEST;
+        newDirection = DIRECTIONS.WEST;
         saab.turnRight();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.NORTH;
+        newDirection = DIRECTIONS.NORTH;
         saab.turnRight();
         assertEquals(newDirection, saab.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.EAST;
+        newDirection = DIRECTIONS.EAST;
         volvo.turnRight();
         assertEquals(newDirection, volvo.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.SOUTH;
+        newDirection = DIRECTIONS.SOUTH;
         volvo.turnRight();
         assertEquals(newDirection, volvo.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.WEST;
+        newDirection = DIRECTIONS.WEST;
         volvo.turnRight();
         assertEquals(newDirection,volvo.orientation.getCurrentDirection());
 
-        newDirection = Orientation.Directions.NORTH;
+        newDirection = DIRECTIONS.NORTH;
         volvo.turnRight();
         assertEquals(newDirection, volvo.orientation.getCurrentDirection());
     }

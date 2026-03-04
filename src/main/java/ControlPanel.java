@@ -12,8 +12,7 @@ public class ControlPanel extends JPanel {
     private static final int FrameSizeX = 800;
     private static final int FrameSizeY = 800;
 
-    CarController carC;
-    ArrayList<Car> cars;
+    ArrayList<ControllPanelListener> listeners = new ArrayList<>();
 
     JPanel controlPanel = new JPanel();
 
@@ -35,18 +34,7 @@ public class ControlPanel extends JPanel {
 
     public  ControlPanel(){
         initComponents();
-        this.carC = new CarController();
-        this.cars = new ArrayList<>();
     }
-
-    public void addCar(Car car){
-        cars.add(car);
-
-    }
-
-
-
-
 
     private void initComponents(){
 
@@ -97,8 +85,12 @@ public class ControlPanel extends JPanel {
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(Car car : cars){
-                carC.gas(gasAmount, car);}
+                for(ControllPanelListener l : listeners){
+                    l.actOnGasButton(gasAmount);
+                }
+
+//                for(Car car : cars){
+//                carC.gas(gasAmount, car);}
             }
         });
 
@@ -106,52 +98,83 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int brakeAmount = gasAmount;
-                    for(Car car : cars){
-                carC.brake(brakeAmount, car);}
+                for(ControllPanelListener l : listeners){
+                    l.actOnBrakeButton(brakeAmount);
+                }
+
+//                for(Car car : cars){
+//                carC.brake(brakeAmount);}
             }
         });
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(Car car : cars){
-                carC.turboOn(car);}
+                for(ControllPanelListener l : listeners){
+                    l.actOnTurboOnButton();
+                }
+
+//                for(Car car : cars){
+//                carC.turboOn();}
             }
         });
         turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    for(Car car : cars){
-                carC.turboOff(car);}
+                for(ControllPanelListener l : listeners){
+                    l.actOnTurboOffButton();
+                }
+
+//                    for(Car car : cars){
+//                carC.turboOff(car);}
             }
         });
         liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(Car car : cars){
-                carC.liftBed(car);}
+                for(ControllPanelListener l : listeners){
+                    l.actOnLiftBedButton();
+                }
+
+//                for(Car car : cars){
+//                carC.liftBed(car);}
             }
         });
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    for(Car car : cars){
-                carC.lowerBed(car);}
+                for(ControllPanelListener l : listeners){
+                    l.actOnLowerBedButton();
+                }
+
+//                for(Car car : cars){
+//                carC.lowerBed(car);}
             }
         });
 
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(Car car : cars){
-                carC.startEngine(car);}
+                for(ControllPanelListener l : listeners){
+                    l.actOnStartButton();
+                }
+
+//                for(Car car : cars){
+//                carC.startEngine(car);}
             }
         });
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    for(Car car : cars){
-                carC.stopEngine(car);}
+                for(ControllPanelListener l : listeners){
+                    l.actOnStopButton();
+                }
+
+//                for(Car car : cars){
+//                carC.stopEngine(car);}
             }
         });
+    }
+    public void addListener(ControllPanelListener l){
+        listeners.add(l);
     }
 }
