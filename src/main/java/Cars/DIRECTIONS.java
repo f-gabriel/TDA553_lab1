@@ -23,16 +23,16 @@ public enum DIRECTIONS {
     public DIRECTIONS turnLeft(){
         int leftIndex = this.ordinal() + 1;
         int lengthDirections = DIRECTIONS.values().length;
-        return DIRECTIONS.values()[lengthDirections % leftIndex];
+        return DIRECTIONS.values()[leftIndex % lengthDirections];
     }
     public DIRECTIONS turnRight(){
         int rightIndex = this.ordinal() -1;
         int lengthDirections = DIRECTIONS.values().length;
-        return DIRECTIONS.values()[lengthDirections % rightIndex];
+        return DIRECTIONS.values()[rightIndex % lengthDirections];
     }
     public DIRECTIONS turnAround(){
         int oppositeIndex = this.ordinal() + 2;
         int lengthDirections = DIRECTIONS.values().length;
-        return DIRECTIONS.values()[lengthDirections % oppositeIndex];
+        return DIRECTIONS.values()[oppositeIndex % lengthDirections];
     }
 }
