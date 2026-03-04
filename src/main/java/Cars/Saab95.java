@@ -4,19 +4,21 @@ import java.awt.*;
 
 public class Saab95 extends PersonalVehicle implements TurboChargable {
     boolean turboOn;
-
-    public Saab95(){
+    public static Car CreateSaab95(){
+        return new Saab95();
+    }
+    private Saab95(){
         double power = 125;
         super(power, 2, Color.red, "Cars.Saab95", 0, 0, "north");
 	    turboOn = false;
     }
 
-    public Saab95(double x, double y, String direction){
+    private Saab95(double x, double y, String direction){
         super(125, 2,Color.red, "Cars.Saab95", x, y, direction);
         turboOn = false;
     }
 
-    public Saab95(Color color, double x, double y, String direction){
+    private Saab95(Color color, double x, double y, String direction){
         super(125, 2, color, "Cars.Saab95", x, y, direction);
         turboOn = false;
     }

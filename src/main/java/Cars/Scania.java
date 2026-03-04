@@ -6,11 +6,15 @@ public class Scania extends Truck {
 
     private double bedHelperDegree;
 
-    public Scania() {
+    public static Car CreateScania(){
+        return new Scania();
+    }
+
+    private Scania() {
         super(500, Color.red, "Cars.Scania", 0, 0, "north");
         this.bedHelperDegree = 0;
     }
-    public Scania(double x, double y, String direction){
+    private Scania(double x, double y, String direction){
         super(100, Color.red, "Cars.Scania", x, y, direction);
     }
 
