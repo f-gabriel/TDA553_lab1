@@ -1,4 +1,4 @@
-package Mechanic;// todo: ffa fixa så att unload() följer labinstruktionerna. Kanske kräver omskrivning av load() med.
+package Mechanic;
 // skapa märkesverkstäder för Saab pch Volvo
 import Cars.HasOrientation;
 import Loader.Loadable;
@@ -19,6 +19,10 @@ public class CarMechanic<T extends Car> implements Loadable<T>, HasOrientation {
     public CarMechanic(int cargoSize, double xCoordinate, double yCoordinate, String direction) {
         this.loader = new Loader<T>(cargoSize);
         this.orientation = new Orientation(xCoordinate, yCoordinate, direction);
+    }
+    public CarMechanic(CarMechanic cm){
+        this.loader = new Loader<>(cm.loader);
+        this.orientation = new Orientation(cm.orientation);
     }
 
 

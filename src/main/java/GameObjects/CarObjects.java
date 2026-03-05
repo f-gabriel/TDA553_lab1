@@ -8,9 +8,13 @@ import java.util.List;
 
 public class CarObjects implements HoldsGameObjects<Car>{
     private List<Car> carObjects = new ArrayList<>();
+    private int maxListSize = 10;
+
     @Override
     public void addGameObject(Car car) {
-        carObjects.add(car);
+        if(carObjects.size() <= maxListSize) {
+            carObjects.add(car);
+        }
     }
     public void removeGameObject(Car car) {
         carObjects.remove(car);

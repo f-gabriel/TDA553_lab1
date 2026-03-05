@@ -24,13 +24,14 @@ public class Main {
         Volvo240 volvo240 = simC.createVolvo240(0, 100, "east");
         Scania scania = simC.createScania(0, 200, "east");
 
-        VolvoMechanic volvoMechanic = simC.createVolvoMechanic(15, 300, 0, "north");
+        VolvoMechanic volvoMechanic1 = simC.createVolvoMechanic(15, 300, 0, "north");
+        VolvoMechanic volvoMechanic2 = simC.createVolvoMechanic(15, 300, 100, "north");
 
         gameObjects.addGameObject(saab95);
         gameObjects.addGameObject(volvo240);
         gameObjects.addGameObject(scania);
-        gameObjects.addGameObject(volvoMechanic);
-
+        gameObjects.addGameObject(volvoMechanic1);
+        gameObjects.addGameObject(volvoMechanic2);
 
         model.startSimulation();
     }

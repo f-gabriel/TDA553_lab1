@@ -32,8 +32,8 @@ public class ControlPanel extends JPanel {
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
-    JButton AddCarButton = new JButton("add a randomized car");
-    JButton RemoveCarButton = new JButton("Remove a randomized car");
+    JButton AddCarButton = new JButton("Add Volvo240");
+    JButton RemoveCarButton = new JButton("Remove Car");
     public  ControlPanel(){
         initComponents();
     }
@@ -189,7 +189,7 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for(ControllPanelListener l : listeners){
-                    l.actOnAddCarButton();
+                    l.actOnRemoveCarButton();
                 }
             }
         });

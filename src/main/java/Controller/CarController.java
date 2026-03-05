@@ -108,41 +108,7 @@ public class CarController {
 
 
 
-    // 2. Alla metoder nedan gör exakt en sak: Tar emot ett kommando från Vyn (knapparna)
-    // och skickar det rakt vidare till Modellen. Ingen logik, inga loopar, inga "instanceof".
 
-//    public void gas(int amount) {
-//        gameModel.gas(amount);
-//    }
-//
-//    public void brake(int amount) {
-//        gameModel.brake(amount);
-//    }
-//
-//    public void turboOn() {
-//        gameModel.turboOn();
-//    }
-//
-//    public void turboOff() {
-//        gameModel.turboOff();
-//    }
-//
-//    public void liftBed() {
-//        gameModel.liftBed();
-//    }
-//
-//    public void lowerBed() {
-//        gameModel.lowerBed();
-//    }
-//
-//    public void startEngine() {
-//        gameModel.startEngine();
-//    }
-//
-//    public void stopEngine() {
-//        gameModel.stopEngine();
-//    }
-//}
 
 
 

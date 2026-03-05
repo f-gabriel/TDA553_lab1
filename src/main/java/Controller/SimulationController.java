@@ -1,9 +1,8 @@
 package Controller;
 
-import Cars.Car;
-import Cars.Saab95;
-import Cars.Scania;
-import Cars.Volvo240;
+import java.util.Random;
+
+import Cars.*;
 import GameObjects.GameObjects;
 import Mechanic.CarMechanic;
 import Mechanic.VolvoMechanic;
@@ -38,20 +37,6 @@ public class SimulationController implements ModelListener, ControllPanelListene
         return carC.createScania(x,y,direction);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public void actOnModelUpdate() {
         for(Car car : gameObjects.getCarObjects()) {
@@ -61,7 +46,8 @@ public class SimulationController implements ModelListener, ControllPanelListene
 
     @Override
     public void actOnAtMechanic(Car car, CarMechanic carMechanic) {
-        // todo
+        mechC.load(car, carMechanic);
+        gameObjects.removeGameObject(car);
     }
 
     @Override
@@ -115,5 +101,23 @@ public class SimulationController implements ModelListener, ControllPanelListene
     public void actOnStopButton() {
         for(Car car : gameObjects.getCarObjects()) {
         carC.stopEngine(car);}
+    }
+
+    @Override
+    public void actOnAddCarButton() {
+        Random rng = new Random();
+
+        int randX = rng.nextInt(7) * 100;
+        int randY = rng.nextInt(7) * 100;
+        String randDirection = DIRECTIONS.values()[rng.nextInt(3)].toString();
+
+        Volvo240 volvo = createVolvo240(randX, randY,randDirection);
+        gameObjects.addGameObject(volvo);
+    }
+
+    @Override
+    public void actOnRemoveCarButton() {
+        Car lastCar = gameObjects.getCarObjects().getLast();
+        gameObjects.removeGameObject(lastCar);
     }
 }

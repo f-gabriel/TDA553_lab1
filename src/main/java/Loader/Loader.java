@@ -11,6 +11,11 @@ public class Loader<T> implements Loadable<T> {
         this.cargo = new ArrayList<>(); // T är alltså typ, cargoSize är hur många object listan kan innehålla som mest
         this.cargoSize = Size;  }
 
+    public Loader(Loader loader){
+        this.cargo = new ArrayList<>(loader.cargo);
+        this.cargoSize = loader.cargoSize;
+    }
+
     public ArrayList<T> getCargo(){return cargo;}
     public void load(T item){
         if (cargo.size() < cargoSize) {

@@ -14,6 +14,12 @@ public class Orientation implements HasOrientation {
         setStartingDirection(direction);
     }
 
+    public Orientation(Orientation orientation){
+        this.xCoordinate = orientation.xCoordinate;
+        this.yCoordinate = orientation.yCoordinate;
+        this.currentDirection = orientation.currentDirection;
+    }
+
     // sätter startriktning utifrån argument <String direction>
     void setStartingDirection(String direction){
         String lowerDirection = direction.toUpperCase();

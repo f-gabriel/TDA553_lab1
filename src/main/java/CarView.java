@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+
 import Cars.*;
 import Controller.ControlPanel;
 import GameObjects.GameObjects;
@@ -69,8 +71,9 @@ public class CarView implements ModelListener {
     }
 
     @Override
-    public void actOnModelUpdate() {
-        if(gameObjects.getGameObjects().size() != drawPanel.getDrawables().size()){
+    public void actOnModelUpdate() throws IOException {
+        if(drawPanel.getDrawables().size() != gameObjects.size()){
+            drawPanel.resetDrawables();
             for(HasOrientation gameObject: gameObjects.getGameObjects()){
                 DrawObject drawable = drawPanel.createDrawObject(gameObject);
                 drawPanel.addDrawable(drawable);
@@ -81,11 +84,10 @@ public class CarView implements ModelListener {
 
     @Override
     public void actOnAtMechanic(Car car, CarMechanic carMechanic) {
-
+        drawPanel.removeDrawable(car);
     }
 
     @Override
     public void actOnAtEndOfScreen(Car car) {
-
     }
 }

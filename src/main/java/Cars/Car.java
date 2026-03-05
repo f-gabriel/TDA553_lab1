@@ -17,6 +17,14 @@ abstract public class Car extends Engine implements Movable, HasOrientation {
         this.orientation = new Orientation(x, y, direction);
         stopEngine();
     }
+    public Car(Car car){
+        super(car.enginePower);
+        this.nrDoors = car.nrDoors;
+        this.color = car.color;
+        this.modelName = car.modelName;
+        this.orientation = new Orientation(car.orientation);
+        this.currentSpeed = car.currentSpeed;
+    }
 
     // get-/set-funktioner som rör hastighet och positionering
     public double getCurrentSpeed(){return currentSpeed;}

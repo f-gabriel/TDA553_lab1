@@ -45,4 +45,7 @@ public class GameObjects implements HoldsGameObjects<HasOrientation> {
     private void addMechanicObject(CarMechanic<Car> mechanicObject) {
         mechanicObjects.addGameObject(mechanicObject);
     }
+    public int size(){
+        return getGameObjects().size();
+    }
 }
