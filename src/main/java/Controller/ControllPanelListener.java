@@ -9,4 +9,6 @@ public interface ControllPanelListener {
     void actOnLowerBedButton();
     void actOnStartButton();
     void actOnStopButton();
+    void actOnAddCarButton();
+    void actOnRemoveCarButton();
 }

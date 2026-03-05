@@ -8,10 +8,10 @@ import java.util.List;
 public class VolvoFM460CarTransport extends Truck implements Loadable<PersonalVehicle> {
     Loader<PersonalVehicle> loader = new Loader<PersonalVehicle>(8); // hjälpklass till Loader.Loadable
 
-    public static Car CreateVolvoFM460CarTransport(){
+    public static VolvoFM460CarTransport CreateVolvoFM460(){
         return new VolvoFM460CarTransport();
-    }
 
+    };
     // default instansiering av klassen
     private VolvoFM460CarTransport(){
         super (460, Color.white, "Volvo FM 460",0, 0, "north");}

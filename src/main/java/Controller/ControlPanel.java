@@ -32,6 +32,8 @@ public class ControlPanel extends JPanel {
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
+    JButton AddCarButton = new JButton("add a randomized car");
+    JButton RemoveCarButton = new JButton("Remove a randomized car");
     public  ControlPanel(){
         initComponents();
     }
@@ -65,6 +67,8 @@ public class ControlPanel extends JPanel {
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
+        controlPanel.add(AddCarButton, 6);
+        controlPanel.add(RemoveCarButton, 7);
         controlPanel.setPreferredSize(new Dimension((FrameSizeX /2)+4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
@@ -166,15 +170,33 @@ public class ControlPanel extends JPanel {
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(ControllPanelListener l : listeners){
+                for (ControllPanelListener l : listeners) {
                     l.actOnStopButton();
                 }
 
 //                for(Car car : cars){
 //                carC.stopEngine(car);}
+            }});
+        AddCarButton.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               for(ControllPanelListener l : listeners){
+                   l.actOnAddCarButton();
+               }
+           }
+        });
+        RemoveCarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(ControllPanelListener l : listeners){
+                    l.actOnAddCarButton();
+                }
             }
         });
     }
+
+
+
     public void addListener(ControllPanelListener l){
         listeners.add(l);
     }
